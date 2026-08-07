@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LANZZ PROJECT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#050214;
+--card:#0f0a24;
+--text:#FFFFFF;
+--sub:#A0A3B8;
+--cyan:#00D4FF;
+--magenta:#D946EF;
+--glowCyan:0 0 20px rgba(0,212,255,.7);
+--glowMag:0 0 20px rgba(217,70,239,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Rajdhani,sans-serif;
+color:var(--text);
+padding-bottom:80px;
+background-image:url('https://i.imgur.com/rLi6uSB.gif');
+background-color:#050214; /* WARNA JAGA2 KALO GIF GAGAL */
+background-size:contain; /* JANGAN COVER, PAKE CONTAIN */
+background-position:center top; /* DI TENGAH ATAS KAYA FOTO 2 */
+background-repeat:no-repeat; /* JANGAN DIULANG */
+background-attachment:fixed; /* BIAR GA IKUT SCROLL */
+}
+body::before{
+content:'';
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:linear-gradient(180deg,rgba(5,2,20,.85) 0%,rgba(5,2,20,.95) 100%);
+z-index:-1;
+}
+header{position:relative;text-align:center;padding-top:20px}
+header h1{
+font-family:Orbitron,sans-serif;font-size:26px;font-weight:900;letter-spacing:2px;
+background:linear-gradient(90deg,var(--magenta),var(--cyan),var(--magenta));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+animation:glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow{from{text-shadow:0 0 10px var(--magenta)}to{text-shadow:0 0 20px var(--cyan)}}
+header h1 i{color:var(--cyan);font-size:16px;text-shadow:var(--glowCyan)}
+header .sub{color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:1.5px;margin:6px 0 15px;text-shadow:var(--glowCyan);}
+.btn-portfolio, .btn-desain{
+  padding:10px 20px; /* INI KUNCINYA */
+  background:linear-gradient(90deg,var(--cyan),var(--magenta));
+  border:none;
+  border-radius:50px;
+  color:#fff;
+  font-weight:800;
+  font-family:Orbitron;
+  font-size:11px; /* JANGAN 13px, KEBESARAN */
+  letter-spacing:0.3px;
+  box-shadow:0 0 12px var(--cyan), 0 0 20px var(--magenta);
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
+}
+.btn-wrap{
+  gap:12px; /* JARAK ANTAR TOMBOL */
+  margin:15px 0;
+}
+.btn-portfolio:hover, .btn-desain:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px var(--cyan), 0 0 50px var(--magenta);
+}
+  transform:scale(1.05);
+  box-shadow:var(--glowMag);
+}
+.btn-portfolio{padding:7px 14px;background:linear-gradient(90deg,var(--cyan),var(--magenta));border:none;border-radius:50px;color:#fff;font-weight:800;font-family:Orbitron;font-size:10px;box-shadow:var(--glowCyan);text-decoration:none;display:inline-block;transition:.3s;}
+.btn-portfolio:hover{transform:scale(1.05)}
+header p.tag{color:#D946EF;font-size:11px;font-weight:700;margin-top:12px;text-shadow:0 0 8px #D946EF}
+.section-title{font-family:Orbitron,sans-serif;text-align:center;font-size:18px;font-weight:900;margin:35px 0 18px;background:linear-gradient(90deg,var(--magenta),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.layanan-card{background:rgba(15,10,36,.6);border:1px solid rgba(0,212,255,.4);border-radius:15px;padding:16px;margin:14px;backdrop-filter:blur(12px);box-shadow:0 0 25px rgba(0,212,255,.15);transition:.3s;}
+.layanan-card:hover{border-color:var(--magenta);box-shadow:var(--glowMag)}
+.layanan-card h3{font-family:Orbitron,sans-serif;font-size:14px;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.layanan-card li{list-style:none;color:var(--sub);font-size:12px;margin:5px 0;padding-left:5px;}
+.layanan-card li::before{content:'•';color:var(--magenta);font-weight:700;margin-right:5px;}
+.contoh-card{background:rgba(15,10,36,.5);border-radius:12px;min-height:120px;margin:14px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid rgba(0,212,255,.4);backdrop-filter:blur(10px);transition:.3s;text-align:center;}
+.contoh-card:hover{border-color:var(--magenta);box-shadow:var(--glowMag)}
+.contoh-card h3{font-size:16px;margin:10px 0;color:var(--cyan);}
+.contoh-card small{color:#aaa;font-size:13px;display:block;margin-top:5px;line-height:1.5;}
+.section-title i{margin-right:8px;}
+.contoh-card p{color:var(--sub);font-size:11px;font-weight:700}
+.btn-wrap{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin:25px 12px 40px;}
+.btn-bawah{padding:10px 22px;border-radius:50px;font-size:12px;font-weight:800;font-family:Orbitron;text-decoration:none;color:#fff;background:linear-gradient(90deg,#00D4FF,#00AAFF);box-shadow:0 0 20px rgba(0,212,255,.7);transition:.3s;border:none;}
+.btn-bawah:hover{transform:translateY(-3px) scale(1.03);}
+.btn-bawah.back{background:#000;border:2px solid #00D4FF;box-shadow:0 0 25px rgba(0,212,255,.5);}
+.sosmed-wrap{text-align:center;margin:20px 12px 30px;}
+.sosmed-wrap h3{font-size:16px;color:var(--cyan);margin-bottom:15px;font-family:Orbitron;}
+.sosmed-btn{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.sosmed{padding:10px 18px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;color:#fff;display:flex;align-items:center;gap:8px;transition:.3s;border:2px solid;backdrop-filter:blur(10px);}
+.sosmed i{font-size:16px;}
+.sosmed:hover{transform:translateY(-3px) scale(1.05);}
+.sosmed.wa{background:linear-gradient(90deg,#25D366,#128C7E);border-color:#25D366;box-shadow:0 0 15px rgba(37,211,102,.4);}
+.sosmed.ig{background:linear-gradient(90deg,#F58529,#DD2A7B,#8134AF);border-color:#DD2A7B;box-shadow:0 0 15px rgba(221,42,123,.4);}
+.sosmed.tt{background:linear-gradient(90deg,#000,#25F4EE);border-color:#25F4EE;box-shadow:0 0 15px rgba(37,244,238,.4);}
+footer{text-align:center;color:var(--sub);font-size:10px;margin-top:25px}
+/* TOMBOL SCROLL KE ATAS */
+#btnUp{position:fixed;bottom:20px;right:20px;background:linear-gradient(90deg,#00D4FF,#D946EF);color:#fff;border:none;border-radius:50%;width:45px;height:45px;font-size:18px;box-shadow:0 0 20px rgba(0,212,255,.7);cursor:pointer;display:none;z-index:999;transition:.3s;}
+#btnUp:hover{transform:scale(1.1)}
+
+/* EFEK SCROLL DOANG YG GUE TAMBAH */
+.scroll-animate{opacity:0;transform:translateY(40px);transition:0.8s ease-out;}
+.scroll-animate.show{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<header>
+  <h1>LANZZ PROJECT <i class="fa-solid fa-circle-check"></i></h1>
+  <p class="sub">DEVELOPER | MODDER | CREATOR | EDITOR | GAMER</p>
+  
+  <!-- TOMBOL GROUP -->
+  <div class="btn-wrap">
+    <a href="https://lanzz-official.github.io/Project/halaman3.html" class="btn-desain">LIHAT PORTFOLIO</a>
+    <a href="https://lanzz-official.github.io/Project/contoh-desain.html" class="btn-desain">LIHAT DESAIN</a>
+  </div>
+
+  <p class="tag">PROJECT TERSEDIA | MAU DIBUATIN APA?</p>
+</header>
+
+<h2 class="section-title scroll-animate">SEMUA LAYANAN</h2>
+
+<div class="layanan-card scroll-animate">
+<h3><i class="fa-solid fa-bag-shopping"></i> 1. Landing Page Jualan</h3>
+<li>Website Katalog</li><li>Webstore</li><li>E-Commerce</li><li>Marketplace</li><li>Web Toko/Warung</li>
+</div>
+
+<div class="layanan-card scroll-animate">
+<h3><i class="fa-solid fa-briefcase"></i> 2. Website Portfolio</h3>
+<li>CV Online</li><li>Portfolio</li><li>Company Profile</li><li>Website Tugas Sekolah</li>
+</div>
+
+<div class="layanan-card scroll-animate">
+<h3><i class="fa-solid fa-robot"></i> 3. APK Android Mod</h3>
+<li>Booster Sosmed & Game</li><li>Tools</li><li>Mod</li><li>APK Custom</li>
+</div>
+
+<div class="layanan-card scroll-animate">
+<h3><i class="fa-solid fa-code"></i> 4. HTML CSS JS</h3>
+<li>HTML Profile</li><li>Surat Undangan Digital</li><li>Ucapan Ulang Tahun</li><li>Kata-Kata Buat Pacar</li>
+</div>
+
+<div class="btn-wrap">
+  <a href="https://wa.me/6283894480846" class="btn-bawah">PESAN SEKARANG</a>
+  <a href="https://lanzz-official.github.io/Project/kado.html" class="btn-bawah back">KADO BUAT KAMU !!!</a>
+  <div class="sosmed-btn">
+    <a href="https://wa.me/6283894480846" target="_blank" class="sosmed wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://www.instagram.com/lanzz.offcl" target="_blank" class="sosmed ig"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    <a href="https://vm.tiktok.com/ZS9rWTRvhPtHj-9RxPS/" target="_blank" class="sosmed tt"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+</div>
+
+<footer>© 2026 LANZZ PROJECT. All Rights Reserved</footer>
+<button id="btnUp"><i class="fa-solid fa-arrow-up"></i></button>
+<script>
+// ANIMASI SCROLL
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if(entry.isIntersecting){entry.target.classList.add('show');}
+});
+},{threshold:0.1});
+document.querySelectorAll('.scroll-animate').forEach(el => {observer.observe(el);});
+
+// TOMBOL UP
+let btnUp = document.getElementById("btnUp");
+window.onscroll = function() {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btnUp.style.display = "block";
+  } else {
+    btnUp.style.display = "none";
+  }
+}
+btnUp.onclick = function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
