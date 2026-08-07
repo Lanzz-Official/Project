@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LANZZ OFFICIAL</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap');
+:root{
+--bg:#020014;
+--text:#FFFFFF;
+--sub:#B0B3C7;
+--blue:#00BFFF;
+--pink:#FF00FF;
+--glowPink:0 0 15px #FF00FF;
+--glowBlue:0 0 15px #00BFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{color:var(--text);background:var(--bg);overflow-x:hidden}
+
+/* VIDEO BACKGROUND */
+#bgVideo{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(0.8)}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(2,0,20,0.4),rgba(2,0,20,0.7));z-index:-1;}
+
+/* TOP INFO - CUMA JAM TANGGAL CUACA */
+.topinfo{
+display:flex;justify-content:space-between;align-items:center;
+padding:6px 12px;font-size:9px;background:rgba(2,0,20,0.8);backdrop-filter:blur(8px);
+border-bottom:2px solid var(--pink);
+}
+.topinfo .kiri{display:flex;gap:15px;align-items:center}
+.topinfo .jam{color:var(--blue);font-weight:700;font-family:'Orbitron',sans-serif;display:flex;gap:5px;align-items:center}
+.topinfo .titik{width:6px;height:6px;background:var(--blue);border-radius:50%;box-shadow:var(--glowBlue);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.topinfo .tanggal,.topinfo .cuaca{color:var(--sub);display:flex;gap:4px;align-items:center}
+
+/* HERO */
+.hero{
+height:calc(100vh - 35px);display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;padding:20px 15px;
+}
+.hero h1{font-size:22px;font-weight:900;letter-spacing:2px;font-family:'Orbitron',sans-serif;margin-bottom:12px}
+.hero h1 .lanzz{color:var(--text);text-shadow:0 0 10px #fff}
+.hero h1 .official{color:var(--pink);text-shadow:var(--glowPink);animation:flicker 2s infinite}
+@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:0.3}}
+
+/* EFEK TYPING */
+.typing{
+font-size:9px;font-weight:700;margin-bottom:8px;letter-spacing:1px;min-height:16px;
+color:var(--blue);text-shadow:var(--glowBlue)
+}
+.cursor{display:inline-block;width:2px;height:12px;background:var(--blue);margin-left:2px;animation:blink 0.7s infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+.hero p.sub{font-size:8px;color:var(--sub);margin-bottom:25px}
+
+/* TOMBOL HOLOGRAM TANPA HIJAU */
+.btnHologram{
+padding:10px 24px;border-radius:30px;
+background:linear-gradient(90deg, #FF00FF 0%, #00BFFF 50%, #FF00FF 100%); /* UDAH DIHAPUS IJO NYA */
+background-size:200% 100%;
+color:#fff;font-weight:800;text-decoration:none;font-size:11px;letter-spacing:1px;
+font-family:'Orbitron',sans-serif;border:2px solid transparent;
+box-shadow:0 0 20px rgba(0,191,255,0.5), 0 0 40px rgba(255,0,255,0.3);
+position:relative;overflow:hidden;transition:0.3s;
+animation:holoShift 3s linear infinite;
+}
+
+/* EFEK SHIMMER JALAN */
+.btnHologram::before{
+content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+animation:shimmer 2s infinite;
+}
+
+/* EFEK GLOW PAS HOVER */
+.btnHologram:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(0,191,255,0.8), 0 0 60px rgba(255,0,255,0.5);
+}
+.btnHologram:active, .btnHologram:focus{
+  pointer-events:auto !important;
+}
+
+@keyframes holoShift{
+0%{background-position:0% 50%}
+100%{background-position:200% 50%}
+}
+@keyframes shimmer{
+0%{left:-100%}
+100%{left:100%}
+}
+
+@media(min-width:600px){
+.hero h1{font-size:36px}
+.topinfo{font-size:12px;padding:10px 30px}
+</style>
+</head>
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline id="bgVideo">
+<source src="https://i.imgur.com/xSvWS3c.mp4" type="video/mp4">
+</video>
+
+<!-- TOP INFO BAR -->
+<div class="topinfo">
+  <div class="kiri">
+    <span class="titik"></span><span id="jam">00.00</span>
+    <span id="tanggal">Loading...</span>
+  </div>
+  <div class="cuaca"><i id="iconCuaca" class="fa-solid fa-cloud-sun"></i> <span id="kota">...</span>, <span id="suhu">--</span>°C</div>
+</div>
+
+<!-- HERO / HOME -->
+<div class="hero">
+    <h1><span class="lanzz">LANZZ</span> <span class="official">OFFICIAL</span></h1>
+    
+    <!-- EFEK TYPING -->
+    <div class="typing" id="typing"></div>
+    
+    <p class="sub">Building Digital Worlds, 500+ Project Selesai</p>
+    <a href="ISI LINK CTA" class="btnHologram">LIHAT SELENGKAPNYA</a>
+</div>
+
+<script>
+// 1. JAM + TANGGAL OTOMATIS
+function updateJam(){
+  const d = new Date();
+  let jam = d.getHours().toString().padStart(2,'0');
+  let menit = d.getMinutes().toString().padStart(2,'0');
+  document.getElementById('jam').innerText = `${jam}.${menit}`;
+
+  const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+  document.getElementById('tanggal').innerText = d.toLocaleDateString('id-ID', options);
+}
+setInterval(updateJam,1000);
+updateJam();
+
+// 2. CUACA OTOMATIS SESUAI LOKASI HP
+const API_KEY = "63fa4567d8f9385f7438b0b4061d24cb"; // <-- DAFTAR DI OPENWEATHERMAP.ORG DULU
+
+function getCuaca(lat, lon) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=id`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('kota').innerText = data.name;
+      document.getElementById('suhu').innerText = Math.round(data.main.temp);
+      document.getElementById('iconCuaca').className = `fa-solid fa-${data.weather[0].main === 'Clear' ? 'sun' : data.weather[0].main === 'Rain' ? 'cloud-rain' : 'cloud'}`;
+    })
+    .catch(() => {
+      document.getElementById('kota').innerText = "Bayah"; 
+      document.getElementById('suhu').innerText = "30";
+    });
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => getCuaca(pos.coords.latitude, pos.coords.longitude),
+    () => { getCuaca(-6.95, 106.2) } // default Bayah kalau ditolak
+  );
+} else {
+  document.getElementById('kota').innerText = "Bayah";
+  document.getElementById('suhu').innerText = "30";
+}
+
+// EFEK TYPING
+const text = "DEVELOPER | MODDER | CREATOR | EDITOR | GAMER";
+let i = 0;
+function ketik(){
+  if(i < text.length){
+    document.getElementById('typing').innerHTML = text.substring(0,i+1) + '<span class="cursor"></span>';
+    i++;
+    setTimeout(ketik, 70);
+  } else {
+    setTimeout(()=>{i=0;ketik()}, 2000);
+  }
+}
+ketik();
+
+// FIX TOMBOL CUMA BISA DIKLIK 1X
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
+</script>
+</body>
+</html>
