@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: black;
+      overflow: hidden;
+    }
+    #jumpscare {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      animation: flash 0.1s; /* efek kedip pas muncul */
+    }
+    #jumpscare img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* biar full layar hp */
+    }
+    @keyframes flash {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Halaman awal kosong hitam -->
+  <div style="color:white; text-align:center; padding-top:50vh; font-family:Arial;">
+    Cilukk Baa...
+  </div>
+
+  <!-- Ini yang muncul pas prank -->
+  <div id="jumpscare">
+    <img src="https://i.imgur.com/wKN8RZI.jpeg" alt="hantu">
+  </div>
+
+  <script>
+    // Muncul 1 detik setelah halaman kebuka
+    setTimeout(function() {
+      document.getElementById("jumpscare").style.display = "block";
+    }, 400); // ganti 500 kalau mau lebih cepet 0.5 detik
+  </script>
+
+</body>
+</html>
