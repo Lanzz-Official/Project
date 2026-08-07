@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME - Toko Online Terpercaya</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#EE4D2D;--primary2:#FF7337;--bg:#F5F5F5;--card:#fff;--text:#222;--sub:#757575;--border:#E0E0E0;--success:#00BFA5;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ANIMASI MASUK */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes shake{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(15deg)}20%,40%{transform:rotate(-15deg)}}
+@keyframes blink{50%{opacity:.3}}
+.scroll-animate{animation:fadeUp.6s ease-out forwards}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:20px;right:20px;z-index:999;width:55px;height:55px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;animation:shake 2s infinite;box-shadow:0 4px 20px rgba(37,211,102,.5);}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:998;background:linear-gradient(90deg,var(--primary),var(--primary2));padding:12px 20px;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.topbar{display:flex;align-items:center;gap:15px;max-width:1300px;margin:auto;}
+.logo{font-size:24px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
+.search{flex:1;background:#fff;border-radius:2px;padding:10px 15px;display:flex;align-items:center;gap:8px;}
+.search input{border:none;outline:none;width:100%;font-size:14px;background:transparent;}
+.header-icons{display:flex;gap:20px;color:#fff;font-size:20px}
+.cart-count{position:relative;top:-12px;right:8px;background:#FFD700;color:#000;font-size:10px;font-weight:700;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;margin-left:-15px}
+
+/* SLIDER BANNER */
+.slider{position:relative;max-width:1300px;margin:20px auto;border-radius:4px;overflow:hidden;}
+.slide{display:none}
+.slide.active{display:block;animation:fadeIn 1s}
+.slide img{width:100%;height:200px;object-fit:cover;border-radius:4px}
+@media (min-width:768px){.slide img{height:280px}}
+.dots{text-align:center;position:absolute;bottom:15px;width:100%}
+.dot{height:8px;width:8px;margin:0 4px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;cursor:pointer;}
+.dot.active{background:#fff;width:20px;border-radius:10px}
+
+/* COUNTDOWN */
+.countdown{background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff;text-align:center;padding:14px;margin:0 15px 20px;border-radius:4px;font-weight:700;font-size:14px;max-width:1300px;}
+@media (min-width:768px){.countdown{margin:0 auto 20px;font-size:16px}}
+
+/* KATEGORI */
+.categories{max-width:1300px;margin:0 auto 20px;padding:0 15px;display:flex;gap:15px;overflow-x:auto}
+.cat-item{min-width:80px;text-align:center;cursor:pointer;}
+.cat-item img{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.cat-item p{font-size:12px;margin-top:5px}
+
+/* FILTER */
+.filter-bar{display:flex;gap:10px;max-width:1300px;margin:0 auto 15px;padding:0 15px;flex-wrap:wrap}
+.filter-bar select{padding:10px 15px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;}
+
+.container{max-width:1300px;margin:0 auto;padding:0 15px;}
+
+/* GRID PRODUK */
+.section-title{font-size:18px;font-weight:700;margin:20px 0 15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (min-width:768px){.grid{grid-template-columns:repeat(4,1fr);gap:15px;}}
+@media (min-width:1024px){.grid{grid-template-columns:repeat(5,1fr);gap:15px;}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:.3s;cursor:pointer;position:relative;}
+.card:hover{transform:translateY(-5px);box-shadow:0 4px 15px rgba(0,0,0,.1);border-color:var(--primary);}
+
+.wishlist{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.95);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer;}
+.wishlist.active i{color:red}
+
+.card img{width:100%;height:180px;object-fit:cover;transition:.4s;}
+.card:hover img{transform:scale(1.05);}
+.badge{position:absolute;top:8px;left:8px;background:var(--primary);color:#fff;font-size:10px;padding:3px 8px;border-radius:2px;font-weight:600;}
+.badge.diskon{background:#FFD700;color:#000}
+.card-body{padding:10px;}
+.card h3{font-size:13px;height:36px;overflow:hidden;line-height:18px;margin-bottom:5px;font-weight:500;}
+.harga-wrap{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.harga{color:var(--primary);font-size:15px;font-weight:700;}
+.harga-cor{font-size:11px;color:var(--sub);text-decoration:line-through}
+.terjual{font-size:10px;color:var(--sub);margin-top:4px}
+.stok{font-size:10px;color:red;font-weight:600;animation:blink 1s infinite;margin-top:3px}
+
+/* TOAST */
+.toast{position:fixed;top:70px;right:20px;background:var(--card);padding:14px 20px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.2);transform:translateX(400px);transition:.4s;z-index:1000;font-weight:500}
+.toast.show{transform:translateX(0)}
+
+/* KERANJANG POPUP */
+.cart-popup{position:fixed;top:0;right:-400px;width:350px;max-width:90%;height:100%;background:var(--card);z-index:1002;transition:.4s;box-shadow:-5px 0 20px rgba(0,0,0,.2);padding:20px;overflow-y:auto}
+.cart-popup.show{right:0}
+.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+
+/* BOTTOM BAR HP */
+.bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--card);padding:10px;box-shadow:0 -2px 10px rgba(0,0,0,.1);gap:10px;z-index:998}
+.bottom-bar a{flex:1;text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;color:#fff;font-size:14px}
+.btn-wa{background:#25D366}.btn-beli{background:var(--primary)}
+@media (max-width:768px){.bottom-bar{display:flex;padding-bottom:calc(10px + env(safe-area-inset-bottom))}}
+
+/* POPUP VOUCHER */
+.popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:1001;opacity:0;pointer-events:none;transition:.4s}
+.popup.show{opacity:1;pointer-events:all}
+.popup-box{background:var(--card);padding:30px;border-radius:12px;text-align:center;max-width:350px;position:relative;}
+.popup-close{position:absolute;top:10px;right:15px;font-size:26px;cursor:pointer}
+
+/* FOOTER */
+footer{background:var(--card);border-top:1px solid var(--border);padding:40px 20px;margin-top:60px;margin-bottom:80px;text-align:center;}
+.cta-back{display:inline-block;padding:15px 40px;background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:16px;}
+</style>
+</head>
+<body>
+
+<a href="https://wa.me/628xxx" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<header>
+<div class="topbar">
+<div class="logo"><i class="fa-solid fa-bag-shopping"></i> YOUR NAME</div>
+<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="searchInput" placeholder="Cari produk..."></div>
+<div class="header-icons">
+<div onclick="showToast('Fitur Akun')"><i class="fa-regular fa-user"></i></div>
+<div onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count" id="cartCount">0</span></div>
+</div>
+</div>
+</header>
+
+<div class="slider">
+<div class="slide active"><img src="https://via.placeholder.com/1300x280/EE4D2D/ffffff?text=GRATIS+ONGKIR"></div>
+<div class="slide"><img src="https://via.placeholder.com/1300x280/FF7337/ffffff?text=FLASH+SALE+50%25"></div>
+<div class="dots"><span class="dot active" onclick="currentSlide(1)"></span><span class="dot" onclick="currentSlide(2)"></span></div>
+</div>
+
+<div class="countdown">🔥 FLASH SALE BERAKHIR DALAM: <span id="timer">02:15:30</span></div>
+
+<div class="categories">
+<div class="cat-item"><img src="https://via.placeholder.com/80/EE4D2D/fff?text=F"><p>Fashion</p></div>
+<div class="cat-item"><img src="https://via.placeholder.com/80/FF7337/fff?text=E"><p>Elektronik</p></div>
+<div class="cat-item"><img src="https://via.placeholder.com/80/4CAF50/fff?text=R"><p>Rumah</p></div>
+</div>
+
+<div class="filter-bar">
+<select id="filterSelect" onchange="filterProduk()">
+<option value="all">Semua Kategori</option>
+<option value="fashion">Fashion</option>
+<option value="elektronik">Elektronik</option>
+<option value="rumah">Rumah</option>
+</select>
+<select onchange="sortProduk(this.value)">
+<option value="terbaru">Urutkan: Terbaru</option>
+<option value="termurah">Harga: Termurah</option>
+<option value="terlaris">Terlaris</option>
+</select>
+</div>
+
+<div class="container">
+<h2 class="section-title">Produk Pilihan</h2>
+<div class="grid" id="productGrid">
+
+<!-- 8 PRODUK -->
+<div class="card scroll-animate" data-name="sepatu nike fashion" data-harga="499000" data-terjual="1200">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<span class="badge">BEST SELLER</span>
+<img src="https://via.placeholder.com/300x300/EE4D2D/ffffff?text=SEPATU">
+<div class="card-body">
+<h3>Sepatu Nike Air Max 270 Premium</h3>
+<div class="harga-wrap"><div class="harga">Rp 499.000</div><div class="harga-cor">Rp 799.000</div></div>
+<div class="terjual">Terjual 1.2rb+</div>
+<div class="stok">⚡ Tersisa 3</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="tas ransel eiger fashion" data-harga="259000" data-terjual="890">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<span class="badge">NEW</span>
+<img src="https://via.placeholder.com/300x300/FF7337/ffffff?text=TAS">
+<div class="card-body">
+<h3>Tas Ransel Eiger Anti Air 30L</h3>
+<div class="harga">Rp 259.000</div>
+<div class="terjual">Terjual 890+</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="headphone bluetooth elektronik" data-harga="189000" data-terjual="540">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<span class="badge diskon">-20%</span>
+<img src="https://via.placeholder.com/300x300/4CAF50/ffffff?text=HEADPHONE">
+<div class="card-body">
+<h3>Headphone Bluetooth TWS Bass</h3>
+<div class="harga-wrap"><div class="harga">Rp 189.000</div><div class="harga-cor">Rp 235.000</div></div>
+<div class="terjual">Terjual 540+</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="jam tangan casio elektronik" data-harga="349000" data-terjual="320">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<img src="https://via.placeholder.com/300x300/2196F3/ffffff?text=JAM">
+<div class="card-body">
+<h3>Jam Tangan Casio G-Shock Original</h3>
+<div class="harga">Rp 349.000</div>
+<div class="terjual">Terjual 320+</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="blender philips rumah" data-harga="420000" data-terjual="150">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<span class="badge">BEST SELLER</span>
+<img src="https://via.placeholder.com/300x300/9C27B0/ffffff?text=BLENDER">
+<div class="card-body">
+<h3>Blender Philips 4 Mata Pisau</h3>
+<div class="harga">Rp 420.000</div>
+<div class="terjual">Terjual 150+</div>
+<div class="stok">⚡ Tersisa 2</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="kaos distro fashion" data-harga="89000" data-terjual="2100">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<img src="https://via.placeholder.com/300x300/FF9800/ffffff?text=KAOS">
+<div class="card-body">
+<h3>Kaos Distro Oversize Premium</h3>
+<div class="harga">Rp 89.000</div>
+<div class="terjual">Terjual 2.1rb+</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="speaker jbl elektronik" data-harga="599000" data-terjual="210">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<span class="badge">NEW</span>
+<img src="https://via.placeholder.com/300x300/607D8B/ffffff?text=SPEAKER">
+<div class="card-body">
+<h3>Speaker JBL Portable Bass</h3>
+<div class="harga">Rp 599.000</div>
+<div class="terjual">Terjual 210+</div>
+</div>
+</div>
+
+<div class="card scroll-animate" data-name="rice cooker miyako rumah" data-harga="310000" data-terjual="430">
+<div class="wishlist" onclick="toggleWishlist(this, event)"><i class="fa-regular fa-heart"></i></div>
+<img src="https://via.placeholder.com/300x300/E91E63/ffffff?text=RICE+COOKER">
+<div class="card-body">
+<h3>Rice Cooker Miyako 1.8L Digital</h3>
+<div class="harga">Rp 310.000</div>
+<div class="terjual">Terjual 430+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="bottom-bar">
+<a href="https://wa.me/628xxx" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Admin</a>
+<a href="#" onclick="toggleCart()" class="btn-beli"><i class="fa-solid fa-bag-shopping"></i> Lihat Keranjang</a>
+</div>
+
+<div class="cart-popup" id="cartPopup">
+<div class="cart-header">
+<h3>Keranjang Belanja</h3>
+<i class="fa-solid fa-xmark" style="font-size:20px;cursor:pointer" onclick="toggleCart()"></i>
+</div>
+<div id="cartItems"><p style="text-align:center;color:var(--sub)">Keranjang kosong</p></div>
+<button onclick="checkout()" style="width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:20px;">Checkout via WA</button>
+</div>
+
+<footer>
+<p style="color:var(--sub);font-size:13px;margin-top:20px">© 2026 Lanzz Project. All Rights Reserved.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let cart = [];
+
+// SLIDER
+let slideIndex = 0; showSlides();
+function showSlides(){let slides = document.getElementsByClassName("slide"); let dots = document.getElementsByClassName("dot"); for(let i=0;i<slides.length;i++){slides[i].style.display="none";} slideIndex++; if(slideIndex>slides.length){slideIndex=1} for(let i=0;i<dots.length;i++){dots[i].className=dots[i].className.replace(" active","");} slides[slideIndex-1].style.display="block"; dots[slideIndex-1].className += " active"; setTimeout(showSlides,4000);}
+function currentSlide(n){slideIndex=n-1;showSlides();}
+
+// COUNTDOWN
+let time = 2*3600 + 15*60; setInterval(()=>{let h=String(Math.floor(time/3600)).padStart(2,'0');let m=String(Math.floor(time%3600/60)).padStart(2,'0');let s=String(time%60).padStart(2,'0');document.getElementById('timer').innerText=`${h}:${m}:${s}`;if(time>0)time--;},1000);
+
+// FIX BUG: TAMBAH SPASI DI SELECTOR
+document.getElementById('searchInput').addEventListener('keyup', filterProduk);
+function filterProduk(){
+let filter=document.getElementById('searchInput').value.toLowerCase(); 
+let cat=document.getElementById('filterSelect').value; 
+document.querySelectorAll('#productGrid.card').forEach(card=>{ // INI TADI SALAH
+let text=card.dataset.name; 
+card.style.display = (text.includes(filter) && (cat=='all'||text.includes(cat)))? '' : 'none';
+});
+}
+function sortProduk(type){
+let grid=document.getElementById('productGrid'); 
+let cards=[...grid.children]; 
+if(type=='termurah')cards.sort((a,b)=>a.dataset.harga-b.dataset.harga); 
+if(type=='terlaris')cards.sort((a,b)=>b.dataset.terjual-a.dataset.terjual); 
+cards.forEach(c=>grid.appendChild(c));
+}
+
+// WISHLIST
+function toggleWishlist(el, e){e.stopPropagation(); el.classList.toggle('active'); showToast(el.classList.contains('active')?'Ditambah ke Wishlist':'Dihapus dari Wishlist');}
+
+// TOAST
+function showToast(msg){let t=document.getElementById('toast'); t.innerText=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500);}
+
+// KERANJANG
+function toggleCart(){document.getElementById('cartPopup').classList.toggle('show');}
+document.querySelectorAll('.card').forEach(card=>{card.addEventListener('click', function(){let nama=this.querySelector('h3').innerText; let harga=this.dataset.harga; cart.push({nama,harga}); document.getElementById('cartCount').innerText=cart.length; showToast(nama+' ditambah ke keranjang'); updateCart();})});
+function updateCart(){let wrap=document.getElementById('cartItems'); if(cart.length==0){wrap.innerHTML='<p style="text-align:center;color:var(--sub)">Keranjang kosong</p>'; return;} wrap.innerHTML=''; cart.forEach((item,i)=>{wrap.innerHTML+=`<div style="display:flex;gap:10px;margin-bottom:15px"><img src="https://via.placeholder.com/60" style="width:60px;height:60px;border-radius:4px"><div><h4 style="font-size:13px">${item.nama}</h4><p style="color:var(--primary);font-weight:700">Rp ${parseInt(item.harga).toLocaleString()}</p></div></div>`})}
+function checkout(){if(cart.length==0){showToast('Keranjang kosong');return;} let pesan='Halo, saya mau order:%0A'; cart.forEach(i=>{pesan+=`- ${i.nama} Rp${parseInt(i.harga).toLocaleString()}%0A`}); window.open(`https://wa.me/628xxx?text=${pesan}`,'_blank');}
+
+// HAPUS OBSERVER RIBET. PRODUK LANGSUNG MUNCUL
+document.querySelectorAll('.card').forEach((el,i)=>{el.style.animationDelay=i*0.1+'s';})
+</script>
+
+</body>
+</html>
