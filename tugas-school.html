@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUGAS SEKOLAH - YOUR NAME</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#2563EB;--primary2:#1E40AF;--accent:#F59E0B;--bg:#F8FAFC;--card:#FFFFFF;--text:#1E293B;--sub:#64748B;--success:#16A34A;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.scroll-animate{opacity:0;transform:translateY(40px);transition:1s ease-out}
+.scroll-animate.show{opacity:1;transform:translateY(0)}
+
+/* NAVBAR */
+nav{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),var(--primary2));z-index:999;padding:15px 0;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
+.logo{font-size:22px;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
+.nav-menu{display:flex;gap:25px;list-style:none}
+.nav-menu a{color:#fff;text-decoration:none;font-weight:600;transition:.3s}
+.nav-menu a:hover{color:var(--accent)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:80px 20px;text-align:center}
+.hero h1{font-size:45px;font-weight:800;margin-bottom:15px;animation:fadeIn 1s}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:18px;margin-bottom:30px;animation:fadeIn 1.2s}
+.btn{display:inline-block;padding:14px 35px;background:var(--accent);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;transition:.3s}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(245,158,11,.5)}
+
+/* SECTION */
+section{padding:70px 20px;max-width:1200px;margin:auto}
+.section-title{text-align:center;font-size:34px;font-weight:800;margin-bottom:50px}
+.section-title span{color:var(--primary)}
+
+/* TENTANG SEKOLAH */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;border-radius:20px;animation:float 3s ease-in-out infinite}
+.about-info h3{font-size:28px;margin-bottom:15px}
+
+/* MATERI */
+.materi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.materi-card{background:var(--card);padding:30px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.05);border-top:4px solid var(--primary);transition:.3s}
+.materi-card:hover{transform:translateY(-10px)}
+.materi-card i{font-size:40px;color:var(--primary);margin-bottom:15px}
+
+/* JADWAL */
+.jadwal{background:var(--card);border-radius:15px;padding:30px;box-shadow:0 4px 15px rgba(0,0,0,.05);overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{background:var(--primary);color:#fff;padding:15px;text-align:left}
+td{padding:15px;border-bottom:1px solid var(--bg)}
+
+/* GALERI */
+.galeri-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.galeri-item{position:relative;overflow:hidden;border-radius:15px;cursor:pointer}
+.galeri-item img{width:100%;height:200px;object-fit:cover;transition:.5s}
+.galeri-item:hover img{transform:scale(1.1)}
+
+/* TUGAS */
+.tugas-list{display:grid;gap:20px}
+.tugas-item{background:var(--card);padding:25px;border-radius:15px;border-left:5px solid var(--accent);display:flex;justify-content:space-between;align-items:center}
+.tugas-status{padding:8px 15px;background:var(--success);color:#fff;border-radius:50px;font-size:12px;font-weight:700}
+
+/* KONTAK */
+.kontak{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.kontak-form input, .kontak-form textarea{width:100%;padding:14px;border:2px solid var(--bg);border-radius:10px;margin-bottom:15px;outline:none}
+.kontak-form button{width:100%;padding:14px;background:var(--primary);border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer}
+
+/* FOOTER */
+footer{background:var(--text);color:#fff;text-align:center;padding:50px 20px}
+.cta-back{display:inline-block;padding:15px 40px;background:linear-gradient(90deg,var(--accent),#F97316);color:#fff;text-decoration:none;border-radius:50px;font-weight:800;font-size:16px;margin-top:20px}
+
+@media (max-width:768px){
+.nav-menu{display:none}
+.about,.kontak{grid-template-columns:1fr}
+.materi-grid,.galeri-grid{grid-template-columns:1fr 1fr}
+.hero h1{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-container">
+<div class="logo"><i class="fa-solid fa-school"></i> YOUR NAME</div>
+<ul class="nav-menu">
+<li><a href="#home">Beranda</a></li>
+<li><a href="#tentang">Tentang</a></li>
+<li><a href="#materi">Materi</a></li>
+<li><a href="#jadwal">Jadwal</a></li>
+<li><a href="#galeri">Galeri</a></li>
+<li><a href="#tugas">Tugas</a></li>
+<li><a href="#kontak">Kontak</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h1 class="scroll-animate">Selamat Datang di Website<br><span>TUGAS SEKOLAH</span></h1>
+<p class="scroll-animate">Nama: YOUR NAME | Kelas: XII IPA 1 | SMA NEGERI 1 CONTOH</p>
+<a href="#materi" class="btn scroll-animate">Lihat Materi</a>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+<h2 class="section-title scroll-animate">Tentang <span>Saya</span></h2>
+<div class="about">
+<img src="https://via.placeholder.com/500x400/2563EB/ffffff?text=FOTO+SAYA" class="scroll-animate" alt="Foto">
+<div class="about-info scroll-animate">
+<h3>YOUR NAME</h3>
+<p>Perkenalkan saya YOUR NAME dari SMA NEGERI 1 CONTOH kelas XII IPA 1. Website ini saya buat sebagai tugas mata pelajaran Informatika. Di website ini saya akan membagikan materi, jadwal, dan tugas-tugas sekolah saya.</p>
+<p><i class="fa-solid fa-check" style="color:var(--success)"></i> Rajin dan Disiplin<br>
+<i class="fa-solid fa-check" style="color:var(--success)"></i> Suka Belajar Teknologi<br>
+<i class="fa-solid fa-check" style="color:var(--success)"></i> Aktif di Organisasi Sekolah</p>
+</div>
+</div>
+</section>
+
+<!-- MATERI -->
+<section id="materi">
+<h2 class="section-title scroll-animate">Materi <span>Pelajaran</span></h2>
+<div class="materi-grid">
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-laptop-code"></i>
+<h3>Informatika</h3>
+<p>Mempelajari HTML, CSS, JavaScript dan pembuatan website.</p>
+</div>
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-calculator"></i>
+<h3>Matematika</h3>
+<p>Materi tentang integral, turunan, dan statistika.</p>
+</div>
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-flask"></i>
+<h3>Fisika</h3>
+<p>Mempelajari gerak, gaya, energi dan gelombang.</p>
+</div>
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-book"></i>
+<h3>Bahasa Indonesia</h3>
+<p>Teks editorial, resensi, dan karya ilmiah.</p>
+</div>
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-globe"></i>
+<h3>Sejarah</h3>
+<p>Sejarah pergerakan nasional dan kemerdekaan Indonesia.</p>
+</div>
+<div class="materi-card scroll-animate">
+<i class="fa-solid fa-dna"></i>
+<h3>Biologi</h3>
+<p>Sistem organ tubuh manusia dan ekosistem.</p>
+</div>
+</div>
+</section>
+
+<!-- JADWAL -->
+<section id="jadwal">
+<h2 class="section-title scroll-animate">Jadwal <span>Pelajaran</span></h2>
+<div class="jadwal scroll-animate">
+<table>
+<thead>
+<tr><th>Hari</th><th>Jam 1</th><th>Jam 2</th><th>Jam 3</th><th>Jam 4</th></tr>
+</thead>
+<tbody>
+<tr><td><b>Senin</b></td><td>Matematika</td><td>Fisika</td><td>Bahasa Indonesia</td><td>Informatika</td></tr>
+<tr><td><b>Selasa</b></td><td>Biologi</td><td>Kimia</td><td>Sejarah</td><td>Penjas</td></tr>
+<tr><td><b>Rabu</b></td><td>Bahasa Inggris</td><td>Matematika</td><td>Seni Budaya</td><td>BP</td></tr>
+<tr><td><b>Kamis</b></td><td>Fisika</td><td>Biologi</td><td>Bahasa Indonesia</td><td>Informatika</td></tr>
+<tr><td><b>Jumat</b></td><td>Agama</td><td>Matematika</td><td>Bahasa Inggris</td><td>Ekskul</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri">
+<h2 class="section-title scroll-animate">Galeri <span>Kegiatan</span></h2>
+<div class="galeri-grid">
+<div class="galeri-item scroll-animate"><img src="https://via.placeholder.com/300x200/2563EB/fff?text=Upacara"></div>
+<div class="galeri-item scroll-animate"><img src="https://via.placeholder.com/300x200/F59E0B/fff?text=Ekskul"></div>
+<div class="galeri-item scroll-animate"><img src="https://via.placeholder.com/300x200/16A34A/fff?text=Lomba"></div>
+<div class="galeri-item scroll-animate"><img src="https://via.placeholder.com/300x200/EF4444/fff?text=Study+Tour"></div>
+</div>
+</section>
+
+<!-- TUGAS -->
+<section id="tugas">
+<h2 class="section-title scroll-animate">Daftar <span>Tugas</span></h2>
+<div class="tugas-list">
+<div class="tugas-item scroll-animate">
+<div>
+<h4>Tugas 1: Membuat Website Portfolio</h4>
+<p>Mata Pelajaran: Informatika | Deadline: 15 Agustus 2026</p>
+</div>
+<div class="tugas-status">SELESAI</div>
+</div>
+<div class="tugas-item scroll-animate">
+<div>
+<h4>Tugas 2: Makalah Perubahan Iklim</h4>
+<p>Mata Pelajaran: Biologi | Deadline: 20 Agustus 2026</p>
+</div>
+<div class="tugas-status">PROSES</div>
+</div>
+<div class="tugas-item scroll-animate">
+<div>
+<h4>Tugas 3: Presentasi Sejarah</h4>
+<p>Mata Pelajaran: Sejarah | Deadline: 25 Agustus 2026</p>
+</div>
+<div class="tugas-status">BELUM</div>
+</div>
+</div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+<h2 class="section-title scroll-animate">Hubungi <span>Saya</span></h2>
+<div class="kontak">
+<form class="kontak-form scroll-animate">
+<input type="text" placeholder="Nama Anda" required>
+<input type="email" placeholder="Email Anda" required>
+<textarea rows="5" placeholder="Pesan..." required></textarea>
+<button type="submit">Kirim Pesan</button>
+</form>
+<div class="scroll-animate">
+<h3>Data Siswa</h3>
+<p style="margin:20px 0"><i class="fa-solid fa-user" style="color:var(--primary)"></i> Nama: YOUR NAME</p>
+<p><i class="fa-solid fa-school" style="color:var(--primary)"></i> Sekolah: SMA NEGERI 1 CONTOH</p>
+<p><i class="fa-solid fa-users" style="color:var(--primary)"></i> Kelas: XII IPA 1</p>
+<p><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> Email: email@sekolah.com</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<h3>Terima Kasih</h3>
+<p style="margin:15px 0;opacity:.8">Website ini dibuat untuk memenuhi tugas mata pelajaran Informatika</p>
+<p style="margin-top:20px;font-size:14px">© 2026 Lanzz Project. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ANIMASI SCROLL
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add('show')}
+})
+},{threshold:0.2});
+document.querySelectorAll('.scroll-animate').forEach(el=>observer.observe(el));
+
+// FORM
+document.querySelector('.kontak-form').addEventListener('submit',function(e){
+e.preventDefault();
+alert('Pesan terkirim! Terima kasih.');
+this.reset();
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('.nav-menu a').forEach(anchor=>{
+anchor.addEventListener('click',function(e){
+e.preventDefault();
+document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+})
+})
+
+// DELAY
+document.querySelectorAll('.scroll-animate').forEach((el,i)=>{el.style.transitionDelay=i*0.1+'s'})
+</script>
+
+</body>
+</html>
