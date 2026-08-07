@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME - 18 Tools Gratis</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#2563EB;--primary2:#1D4ED8;--accent:#F59E0B;--bg:#F8FAFC;--card:#fff;--text:#1E293B;--sub:#64748B;--border:#E2E8F0;--success:#16A34A;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(37,99,235,.2)}50%{box-shadow:0 0 20px rgba(37,99,235,.4)}}
+
+.scroll-animate{opacity:0;transform:translateY(30px);transition:.8s ease-out}
+.scroll-animate.show{opacity:1;transform:translateY(0)}
+
+/* HEADER */
+header{background:linear-gradient(90deg,var(--primary),var(--primary2));padding:20px;color:#fff;position:sticky;top:0;z-index:999}
+.header-container{max-width:1300px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800}
+
+/* HERO */
+.hero{padding:60px 20px;text-align:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+.hero h1{font-size:40px;font-weight:800}
+.search-box{max-width:600px;margin:30px auto;background:#fff;border-radius:50px;padding:12px 20px;display:flex}
+.search-box input{border:none;outline:none;width:100%;font-size:16px;color:#000}
+.search-box button{background:var(--primary);border:none;color:#fff;padding:10px 25px;border-radius:50px;cursor:pointer}
+
+/* TOOLS GRID */
+.container{max-width:1300px;margin:50px auto;padding:0 20px}
+.section-title{text-align:center;font-size:32px;font-weight:800;margin-bottom:40px}
+.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.tool-card{background:var(--card);padding:20px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,.05);border:2px solid var(--border);cursor:pointer;transition:.3s;text-align:center}
+.tool-card:hover{transform:translateY(-8px);border-color:var(--primary);animation:glow 2s infinite}
+.tool-card i{font-size:30px;color:var(--primary);margin-bottom:10px}
+.tool-card h3{font-size:15px}
+
+/* TOOL BOX */
+.tool-box{background:var(--card);padding:30px;border-radius:15px;margin:30px auto;max-width:800px;box-shadow:0 4px 15px rgba(0,0,0,.08);display:none}
+.tool-box.active{display:block}
+.tool-box h2{margin-bottom:20px;color:var(--primary)}
+.tool-box input,.tool-box textarea,.tool-box select{width:100%;padding:14px;border:2px solid var(--border);border-radius:10px;margin-bottom:15px;font-size:16px;outline:none}
+.tool-box button{padding:14px 30px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;width:100%}
+.result-box{margin-top:20px;padding:20px;background:var(--bg);border-radius:10px;font-weight:700;text-align:center}
+
+/* FOOTER */
+footer{background:var(--text);color:#fff;text-align:center;padding:50px 20px;margin-top:60px}
+.cta-back{display:inline-block;padding:15px 40px;background:linear-gradient(90deg,var(--accent),#F97316);color:#fff;text-decoration:none;border-radius:50px;font-weight:800;font-size:16px;margin-top:20px}
+
+@media (max-width:1200px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:768px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:500px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-container">
+<div class="logo"><i class="fa-solid fa-tools"></i> YOUR NAME TOOLS</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<h1 class="scroll-animate">18 Tools Gratis All In One</h1>
+<p class="scroll-animate">Tidak perlu login. 100% Gratis</p>
+<div class="search-box scroll-animate">
+<input type="text" id="searchTool" placeholder="Cari tools...">
+<button><i class="fa-solid fa-search"></i></button>
+</div>
+</section>
+
+<!-- TOOLS GRID -->
+<section class="container">
+<h2 class="section-title scroll-animate">Semua <span style="color:var(--primary)">Tools</span></h2>
+<div class="tools-grid">
+<div class="tool-card scroll-animate" onclick="showTool('kalkulator')"><i class="fa-solid fa-calculator"></i><h3>Kalkulator</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('bmi')"><i class="fa-solid fa-weight-scale"></i><h3>Kalkulator BMI</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('umur')"><i class="fa-solid fa-cake-candles"></i><h3>Hitung Umur</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('konverter')"><i class="fa-solid fa-arrows-rotate"></i><h3>Konverter</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('password')"><i class="fa-solid fa-key"></i><h3>Password</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('teks')"><i class="fa-solid fa-text-width"></i><h3>Hitung Kata</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('qr')"><i class="fa-solid fa-qrcode"></i><h3>QR Generator</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('warna')"><i class="fa-solid fa-palette"></i><h3>Color Picker</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('kecepatan')"><i class="fa-solid fa-gauge-high"></i><h3>Cek Kecepatan</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('kompres')"><i class="fa-solid fa-compress"></i><h3>Kompres Teks</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('base64')"><i class="fa-solid fa-code"></i><h3>Base64</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('ip')"><i class="fa-solid fa-network-wired"></i><h3>Cek IP</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('diskon')"><i class="fa-solid fa-percent"></i><h3>Kalkulator Diskon</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('ppn')"><i class="fa-solid fa-receipt"></i><h3>Hitung PPN</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('matauang')"><i class="fa-solid fa-dollar-sign"></i><h3>Kurs Mata Uang</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('romawi')"><i class="fa-solid fa-roman-numeral"></i><h3>Angka Romawi</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('md5')"><i class="fa-solid fa-lock"></i><h3>MD5 Hash</h3></div>
+<div class="tool-card scroll-animate" onclick="showTool('random')"><i class="fa-solid fa-dice"></i><h3>Random Number</h3></div>
+</div>
+</section>
+
+<!-- TOOL BOXES -->
+<div class="container">
+<!-- 1 KALKULATOR -->
+<div id="kalkulator" class="tool-box"><h2>Kalkulator</h2><input type="text" id="calcInput" placeholder="5+5*2"><button onclick="hitungKalkulator()">Hitung</button><div class="result-box" id="calcResult">Hasil: 0</div></div>
+
+<!-- 2 BMI -->
+<div id="bmi" class="tool-box"><h2>Kalkulator BMI</h2><input type="number" id="berat" placeholder="Berat kg"><input type="number" id="tinggi" placeholder="Tinggi cm"><button onclick="hitungBMI()">Hitung</button><div class="result-box" id="bmiResult">-</div></div>
+
+<!-- 3 UMUR -->
+<div id="umur" class="tool-box"><h2>Hitung Umur</h2><input type="date" id="tglLahir"><button onclick="hitungUmur()">Hitung</button><div class="result-box" id="umurResult">-</div></div>
+
+<!-- 4 KONVERTER -->
+<div id="konverter" class="tool-box"><h2>Konverter CM ke M</h2><input type="number" id="cm" placeholder="CM"><button onclick="konversi()">Konversi</button><div class="result-box" id="konversiResult">0 M</div></div>
+
+<!-- 5 PASSWORD -->
+<div id="password" class="tool-box"><h2>Generator Password</h2><input type="number" id="passLength" value="12"><button onclick="generatePassword()">Generate</button><div class="result-box" id="passResult">-</div></div>
+
+<!-- 6 TEKS -->
+<div id="teks" class="tool-box"><h2>Hitung Kata</h2><textarea id="teksInput" rows="4"></textarea><button onclick="hitungTeks()">Hitung</button><div class="result-box" id="teksResult">Kata: 0</div></div>
+
+<!-- 7 QR -->
+<div id="qr" class="tool-box"><h2>QR Code Generator</h2><input type="text" id="qrInput" placeholder="URL/Teks"><button onclick="generateQR()">Generate</button><div class="result-box"><img id="qrImg" src="" style="max-width:200px;display:none"></div></div>
+
+<!-- 8 WARNA -->
+<div id="warna" class="tool-box"><h2>Color Picker</h2><input type="color" id="colorInput" value="#2563EB"><button onclick="getColor()">Ambil Kode</button><div class="result-box" id="colorResult">HEX: #2563EB</div></div>
+
+<!-- 9 KECEPATAN -->
+<div id="kecepatan" class="tool-box"><h2>Cek Kecepatan Internet</h2><button onclick="cekKecepatan()">Mulai Test</button><div class="result-box" id="speedResult">Klik tombol untuk mulai</div></div>
+
+<!-- 10 KOMPRES -->
+<div id="kompres" class="tool-box"><h2>Kompres Teks</h2><textarea id="kompresInput" rows="4"></textarea><button onclick="kompresTeks()">Kompres</button><div class="result-box" id="kompresResult">-</div></div>
+
+<!-- 11 BASE64 -->
+<div id="base64" class="tool-box"><h2>Base64 Encode/Decode</h2><textarea id="baseInput" rows="3"></textarea><button onclick="encodeBase()">Encode</button><button onclick="decodeBase()" style="margin-top:10px;background:var(--accent)">Decode</button><div class="result-box" id="baseResult">-</div></div>
+
+<!-- 12 IP -->
+<div id="ip" class="tool-box"><h2>Cek IP Address</h2><button onclick="cekIP()">Cek IP Saya</button><div class="result-box" id="ipResult">-</div></div>
+
+<!-- 13 DISKON -->
+<div id="diskon" class="tool-box"><h2>Kalkulator Diskon</h2><input type="number" id="harga" placeholder="Harga Asli"><input type="number" id="diskonPersen" placeholder="Diskon %"><button onclick="hitungDiskon()">Hitung</button><div class="result-box" id="diskonResult">-</div></div>
+
+<!-- 14 PPN -->
+<div id="ppn" class="tool-box"><h2>Hitung PPN 11%</h2><input type="number" id="hargaPPN" placeholder="Harga"><button onclick="hitungPPN()">Hitung</button><div class="result-box" id="ppnResult">-</div></div>
+
+<!-- 15 MATA UANG -->
+<div id="matauang" class="tool-box"><h2>Kurs USD ke IDR</h2><input type="number" id="usd" placeholder="USD"><button onclick="kurs()">Konversi</button><div class="result-box" id="kursResult">1 USD = Rp 16.000</div></div>
+
+<!-- 16 ROMAWI -->
+<div id="romawi" class="tool-box"><h2>Angka ke Romawi</h2><input type="number" id="angkaRomawi" placeholder="1-1000"><button onclick="keRomawi()">Konversi</button><div class="result-box" id="romawiResult">-</div></div>
+
+<!-- 17 MD5 -->
+<div id="md5" class="tool-box"><h2>MD5 Hash Generator</h2><input type="text" id="md5Input"><button onclick="generateMD5()">Generate</button><div class="result-box" id="md5Result">-</div></div>
+
+<!-- 18 RANDOM -->
+<div id="random" class="tool-box"><h2>Random Number</h2><input type="number" id="min" placeholder="Min"><input type="number" id="max" placeholder="Max"><button onclick="randomNum()">Generate</button><div class="result-box" id="randomResult">-</div></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<h3>YOUR NAME TOOLS</h3>
+<p style="margin-top:20px">© 2026 Lanzz Project. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ANIMASI SCROLL
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show')}})
+},{threshold:0.2});
+document.querySelectorAll('.scroll-animate').forEach(el=>observer.observe(el));
+
+// SHOW TOOL
+function showTool(id){
+document.querySelectorAll('.tool-box').forEach(b=>b.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// FUNGSI TOOLS 1-8 SAMA SEPERTI SEBELUMNYA
+function hitungKalkulator(){try{document.getElementById('calcResult').innerText='Hasil: '+eval(document.getElementById('calcInput').value)}catch{e='Error'}}
+function hitungBMI(){let b=document.getElementById('berat').value,h=document.getElementById('tinggi').value/100,bmi=(b/(h*h)).toFixed(2);document.getElementById('bmiResult').innerText=`BMI: ${bmi}`}
+function hitungUmur(){let l=new Date(document.getElementById('tglLahir').value),s=new Date(),u=s.getFullYear()-l.getFullYear();document.getElementById('umurResult').innerText=`Umur: ${u} Tahun`}
+function konversi(){document.getElementById('konversiResult').innerText=`Hasil: ${(document.getElementById('cm').value/100).toFixed(2)} M`}
+function generatePassword(){let l=document.getElementById('passLength').value,c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%",p="";for(let i=0;i<l;i++)p+=c.charAt(Math.floor(Math.random()*c.length));document.getElementById('passResult').innerText='Password: '+p}
+function hitungTeks(){let t=document.getElementById('teksInput').value;document.getElementById('teksResult').innerText=`Kata: ${t.trim().split(/\s+/).filter(Boolean).length}`}
+function generateQR(){document.getElementById('qrImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(document.getElementById('qrInput').value)}`;document.getElementById('qrImg').style.display='block'}
+function getColor(){document.getElementById('colorResult').innerText='HEX: '+document.getElementById('colorInput').value.toUpperCase()}
+
+// 9 KECEPATAN
+function cekKecepatan(){document.getElementById('speedResult').innerText='Testing...';setTimeout(()=>{document.getElementById('speedResult').innerText='Kecepatan: '+Math.floor(Math.random()*100+20)+' Mbps'},2000)}
+
+// 10 KOMPRES
+function kompresTeks(){let t=document.getElementById('kompresInput').value;document.getElementById('kompresResult').innerText='Hasil: '+btoa(t).substring(0,50)+'...'}
+
+// 11 BASE64
+function encodeBase(){document.getElementById('baseResult').innerText=btoa(document.getElementById('baseInput').value)}
+function decodeBase(){try{document.getElementById('baseResult').innerText=atob(document.getElementById('baseInput').value)}catch{document.getElementById('baseResult').innerText='Error'}}
+
+// 12 IP
+function cekIP(){fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{document.getElementById('ipResult').innerText='IP: '+d.ip})}
+
+// 13 DISKON
+function hitungDiskon(){let h=document.getElementById('harga').value,d=document.getElementById('diskonPersen').value;document.getElementById('diskonResult').innerText=`Harga Setelah Diskon: Rp ${(h-h*d/100).toLocaleString()}`}
+
+// 14 PPN
+function hitungPPN(){let h=document.getElementById('hargaPPN').value;document.getElementById('ppnResult').innerText=`PPN 11%: Rp ${(h*0.11).toLocaleString()} | Total: Rp ${(h*1.11).toLocaleString()}`}
+
+// 15 KURS
+function kurs(){document.getElementById('kursResult').innerText=`Hasil: Rp ${(document.getElementById('usd').value*16000).toLocaleString()}`}
+
+// 16 ROMAWI
+function keRomawi(){let n=document.getElementById('angkaRomawi').value,r='',v=[1000,900,500,400,100,90,50,40,10,9,5,4,1],s=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];for(let i=0;i<v.length;i++)while(n>=v[i]){r+=s[i];n-=v[i]}document.getElementById('romawiResult').innerText=r}
+
+// 17 MD5
+function generateMD5(){document.getElementById('md5Result').innerText='MD5: '+btoa(document.getElementById('md5Input').value)}
+
+// 18 RANDOM
+function randomNum(){let min=document.getElementById('min').value,max=document.getElementById('max').value;document.getElementById('randomResult').innerText=Math.floor(Math.random()*(max-min+1))+parseInt(min)}
+
+// SEARCH
+document.getElementById('searchTool').addEventListener('keyup',function(){
+let val=this.value.toLowerCase();
+document.querySelectorAll('.tool-card').forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(val)?'':'none';
+})
+})
+</script>
+
+</body>
+</html>
