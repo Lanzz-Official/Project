@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME - Curriculum Vitae</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#2563EB;--primary2:#1E40AF;--accent:#F59E0B;--bg:#F8FAFC;--card:#FFFFFF;--text:#1E293B;--sub:#64748B;--border:#E2E8F0;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes progress{from{width:0}to{width:var(--w)}}
+
+.scroll-animate{opacity:0;transform:translateY(30px);transition:.8s ease-out}
+.scroll-animate.show{opacity:1;transform:translateY(0)}
+
+.container{max-width:1000px;margin:40px auto;padding:0 20px}
+
+/* HEADER CV */
+.cv-header{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:40px;border-radius:20px 20px 0 0;display:flex;gap:30px;align-items:center}
+.cv-header img{width:140px;height:140px;border-radius:50%;border:4px solid #fff;object-fit:cover}
+.cv-header h1{font-size:36px;font-weight:800}
+.cv-header p{font-size:16px;opacity:.9;margin:5px 0}
+.contact-mini{display:flex;gap:20px;flex-wrap:wrap;margin-top:10px;font-size:14px}
+.btn-download{margin-left:auto;padding:12px 25px;background:#fff;color:var(--primary);border:none;border-radius:50px;font-weight:700;cursor:pointer;transition:.3s}
+.btn-download:hover{transform:scale(1.05)}
+
+/* BODY CV */
+.cv-body{background:var(--card);padding:40px;border-radius:0 0 20px 20px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.section{margin-bottom:35px}
+.section-title{font-size:20px;font-weight:700;color:var(--primary);margin-bottom:20px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--border);padding-bottom:10px}
+
+/* ABOUT */
+.about p{line-height:1.8;color:var(--sub)}
+
+/* EXPERIENCE & EDUCATION */
+.item{margin-bottom:25px;padding-left:20px;border-left:3px solid var(--primary)}
+.item-date{color:var(--accent);font-weight:600;font-size:14px}
+.item-title{font-size:18px;font-weight:700;margin:5px 0}
+.item-company{color:var(--sub);font-weight:500}
+.item-desc{color:var(--sub);margin-top:8px;line-height:1.7}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.skill-item{margin-bottom:15px}
+.skill-name{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:600}
+.skill-bar{height:8px;background:var(--border);border-radius:10px;overflow:hidden}
+.skill-progress{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:10px;width:0;animation:progress 1.5s ease-out forwards}
+
+/* LANGUAGES & HOBBIES */
+.tags{display:flex;gap:10px;flex-wrap:wrap}
+.tag{background:var(--bg);padding:8px 18px;border-radius:50px;font-weight:600;color:var(--primary);border:2px solid var(--primary)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.contact-item{display:flex;align-items:center;gap:12px;color:var(--sub)}
+.contact-item i{width:40px;height:40px;background:var(--bg);display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--primary)}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 20px}
+.cta-back{display:inline-block;padding:15px 40px;background:linear-gradient(90deg,var(--accent),#F97316);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:16px;transition:.3s}
+.cta-back:hover{transform:scale(1.05)}
+
+/* PRINT */
+@media print{
+body{background:#fff}
+.container{margin:0;box-shadow:none}
+.btn-download,footer{display:none}
+}
+
+@media (max-width:768px){
+.cv-header{flex-direction:column;text-align:center}
+.contact-mini{justify-content:center}
+.skills-grid,.contact-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<!-- HEADER -->
+<div class="cv-header scroll-animate">
+<img src="https://via.placeholder.com/140" alt="Foto">
+<div>
+<h1>YOUR NAME</h1>
+<p>Web Developer & UI/UX Designer</p>
+<div class="contact-mini">
+<span><i class="fa-solid fa-envelope"></i> email@anda.com</span>
+<span><i class="fa-solid fa-phone"></i> +62 8xx xxxx xxxx</span>
+<span><i class="fa-solid fa-location-dot"></i> Jakarta, Indonesia</span>
+</div>
+</div>
+<button class="btn-download" onclick="window.print()"><i class="fa-solid fa-download"></i> Download CV</button>
+</div>
+
+<!-- BODY -->
+<div class="cv-body">
+<!-- ABOUT -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-user"></i> Tentang Saya</h2>
+<div class="about">
+<p>Saya adalah Web Developer dengan 4+ tahun pengalaman dalam membangun website modern, responsif, dan user-friendly. Menguasai HTML, CSS, JavaScript, React, dan Laravel. Memiliki passion tinggi dalam UI/UX dan problem solving. Berpengalaman menangani 50+ project untuk klien lokal dan internasional.</p>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h2>
+<div class="item">
+<div class="item-date">2023 - Sekarang</div>
+<div class="item-title">Senior Web Developer</div>
+<div class="item-company">PT Teknologi Maju Jaya</div>
+<div class="item-desc">• Lead tim developer 4 orang untuk project website perusahaan<br>• Membangun 15+ website dengan React dan Laravel<br>• Meningkatkan kecepatan website hingga 70%</div>
+</div>
+<div class="item">
+<div class="item-date">2021 - 2023</div>
+<div class="item-title">Frontend Developer</div>
+<div class="item-company">Freelance</div>
+<div class="item-desc">• Mengerjakan 40+ project website untuk UMKM dan startup<br>• Spesialis di UI/UX dan animasi website<br>• Rating 4.9/5 di platform freelancer</div>
+</div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Pendidikan</h2>
+<div class="item">
+<div class="item-date">2018 - 2022</div>
+<div class="item-title">S1 Teknik Informatika</div>
+<div class="item-company">Universitas Indonesia</div>
+<div class="item-desc">IPK: 3.75 / 4.00 | Aktif di UKM Programming</div>
+</div>
+</div>
+
+<!-- SKILLS -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-code"></i> Keahlian</h2>
+<div class="skills-grid">
+<div class="skill-item">
+<div class="skill-name"><span>HTML & CSS</span><span>95%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:95%"></div></div>
+</div>
+<div class="skill-item">
+<div class="skill-name"><span>JavaScript</span><span>90%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:90%"></div></div>
+</div>
+<div class="skill-item">
+<div class="skill-name"><span>React JS</span><span>85%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:85%"></div></div>
+</div>
+<div class="skill-item">
+<div class="skill-name"><span>PHP & Laravel</span><span>80%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:80%"></div></div>
+</div>
+<div class="skill-item">
+<div class="skill-name"><span>UI/UX Design</span><span>88%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:88%"></div></div>
+</div>
+<div class="skill-item">
+<div class="skill-name"><span>MySQL</span><span>82%</span></div>
+<div class="skill-bar"><div class="skill-progress" style="--w:82%"></div></div>
+</div>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Project Unggulan</h2>
+<div class="item">
+<div class="item-title">E-Commerce Platform</div>
+<div class="item-desc">Membangun toko online dengan 5000+ produk, integrasi payment gateway, dan dashboard admin. Menggunakan React + Laravel.</div>
+</div>
+<div class="item">
+<div class="item-title">Company Profile Website</div>
+<div class="item-desc">Website untuk 10+ perusahaan dengan animasi modern dan SEO optimized.</div>
+</div>
+</div>
+
+<!-- LANGUAGES -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-language"></i> Bahasa</h2>
+<div class="tags">
+<div class="tag">Indonesia - Native</div>
+<div class="tag">English - Fluent</div>
+<div class="tag">Japanese - Basic</div>
+</div>
+</div>
+
+<!-- HOBBIES -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-heart"></i> Hobi & Minat</h2>
+<div class="tags">
+<div class="tag">Coding</div>
+<div class="tag">Design</div>
+<div class="tag">Membaca</div>
+<div class="tag">Fotografi</div>
+<div class="tag">Traveling</div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="section scroll-animate">
+<h2 class="section-title"><i class="fa-solid fa-address-book"></i> Kontak</h2>
+<div class="contact-grid">
+<div class="contact-item"><i class="fa-solid fa-envelope"></i> email@anda.com</div>
+<div class="contact-item"><i class="fa-solid fa-phone"></i> +62 8xx xxxx xxxx</div>
+<div class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/yourname</div>
+<div class="contact-item"><i class="fa-brands fa-github"></i> github.com/yourname</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<p style="color:var(--sub);margin-bottom:20px">© 2026 Lanzz Project. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ANIMASI SCROLL
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+// trigger animasi progress bar
+entry.target.querySelectorAll('.skill-progress').forEach(bar=>{
+bar.style.animation = 'progress 1.5s ease-out forwards';
+})
+}
+})
+},{threshold:0.2});
+
+document.querySelectorAll('.scroll-animate').forEach(el=>observer.observe(el));
+
+// DELAY ANIMASI
+document.querySelectorAll('.scroll-animate').forEach((el,i)=>{el.style.transitionDelay=i*0.1+'s'})
+</script>
+
+</body>
+</html>
