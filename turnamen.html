@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAMA TURNAMEN KAMU</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d0d; --card:#1a1a1a; --text:#ffffff; --gold:#FFC107; --red:#D32F2F; --gray:#2a2a2a;
+}
+body.light{
+  --bg:#f8f9fa; --card:#ffffff; --text:#212121; --gray:#e0e0e0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Roboto',sans-serif;transition:.3s}
+
+#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;justify-content:center;align-items:center;transition:1s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-trophy{font-size:60px;color:var(--gold);animation:spin 2s infinite}
+@keyframes spin{0%,100%{transform:scale(1)}50%{transform:scale(1.2) rotate(10deg)}}
+
+header{padding:18px 20px;background:#000;position:sticky;top:0;z-index:999;border-bottom:3px solid var(--gold);animation:slideDown .6s}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+header .wrap{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto}
+header h1{font-family:'Montserrat';font-size:22px;color:var(--gold);letter-spacing:1px}
+nav{display:flex;gap:20px;flex-wrap:wrap}
+nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:13px;transition:.3s;position:relative}
+nav a:after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
+nav a:hover{color:var(--gold)}
+nav a:hover:after{width:100%}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;font-size:12px;background:var(--card);max-width:1200px;margin:auto}
+.container{max-width:1200px;margin:auto;padding:40px 20px}
+
+.hero{text-align:center;padding:100px 20px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url('https://placehold.co/1920x600/000/FFC107?text=BANNER+TOURNAMENT') center/cover fixed;background-attachment:fixed}
+.hero h2{font-size:48px;margin-bottom:15px;font-family:'Montserrat';color:var(--gold);animation:fadeInUp 1s}
+.hero p{opacity:.9;margin-bottom:30px;font-size:18px;animation:fadeInUp 1.2s}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.btn{padding:14px 30px;border:none;border-radius:4px;background:var(--red);color:#fff;font-weight:800;font-family:'Montserrat';cursor:pointer;transition:.3s;text-decoration:none;display:inline-block;margin:8px;text-transform:uppercase;letter-spacing:1px;position:relative;overflow:hidden}
+.btn:before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
+.btn:hover:before{left:100%}
+.btn:hover{background:#B71C1C;transform:translateY(-3px);box-shadow:0 10px 20px rgba(211,47,47,.4)}
+.btn-outline{background:transparent;border:2px solid var(--gold);color:var(--gold)}
+.btn-outline:hover{background:var(--gold);color:#000}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:40px}
+.card{background:var(--card);padding:0;border-radius:8px;overflow:hidden;transition:.4s;border:1px solid var(--gray);opacity:0;transform:translateY(40px)}
+.card.show{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--gold);box-shadow:0 15px 30px rgba(255,193,7,.2)}
+.card img{width:100%;height:200px;object-fit:cover;transition:.4s}
+.card:hover img{transform:scale(1.1)}
+.card-body{padding:20px}
+.card-body h3{font-family:'Montserrat';margin-bottom:10px}
+
+.countdown{text-align:center;font-size:32px;font-family:'Montserrat';margin:25px 0;color:var(--gold);font-weight:800;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+table{width:100%;border-collapse:collapse;margin-top:20px}
+table th,table td{padding:14px;text-align:left;border-bottom:1px solid var(--gray)}
+table th{background:var(--gray);font-family:'Montserrat';text-transform:uppercase;font-size:12px}
+table tr{transition:.3s}
+table tr:hover{background:var(--gray);transform:translateX(5px)}
+
+form{display:grid;gap:15px;max-width:600px;margin:20px auto}
+input,select,textarea{background:var(--card);border:1px solid var(--gray);padding:14px;border-radius:4px;color:var(--text);font-family:'Roboto';transition:.3s}
+input:focus{border-color:var(--gold);outline:none;box-shadow:0 0 10px rgba(255,193,7,.3)}
+
+/* RULES */
+.rules-list{list-style:none}
+.rules-list li{padding:12px 0;border-bottom:1px solid var(--gray);display:flex;align-items:start;gap:10px}
+.rules-list li i{color:var(--gold);margin-top:3px}
+
+/* SPONSOR */
+.sponsor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;align-items:center;margin-top:30px}
+.sponsor-logo{background:var(--card);padding:20px;border-radius:8px;border:1px solid var(--gray);display:flex;justify-content:center;align-items:center;height:120px;transition:.3s;filter:grayscale(100%)}
+.sponsor-logo:hover{filter:grayscale(0%);border-color:var(--gold);transform:scale(1.05)}
+.sponsor-logo img{max-width:100%;max-height:80px;object-fit:contain}
+
+/* GALERI */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px}
+.gallery-item{position:relative;overflow:hidden;border-radius:8px;border:2px solid var(--gray);cursor:pointer}
+.gallery-item img{width:100%;height:200px;object-fit:cover;transition:.4s}
+.gallery-item:hover img{transform:scale(1.15)}
+.gallery-item .overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:15px;color:#fff;font-weight:700}
+
+/* LIVE STREAM */
+.live-box{background:var(--card);border-radius:8px;overflow:hidden;border:2px solid var(--red)}
+.live-header{background:var(--red);padding:12px 20px;font-family:'Montserrat';display:flex;align-items:center;gap:10px}
+.live-dot{width:10px;height:10px;background:#fff;border-radius:50%;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.live-iframe{width:100%;height:500px;border:none}
+
+#btnUp{position:fixed;bottom:25px;right:25px;padding:14px;border-radius:4px;background:var(--red);color:#fff;border:none;display:none;cursor:pointer;z-index:999;transition:.3s}
+#btnUp:hover{transform:scale(1.1) rotate(360deg)}
+
+.toast{position:fixed;top:20px;right:20px;background:var(--card);padding:15px 25px;border-left:4px solid var(--gold);border-radius:4px;display:none;z-index:1000;font-weight:600;animation:slideInRight .5s}
+@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+
+.toggle{position:fixed;top:80px;right:25px;background:var(--card);border:1px solid var(--gray);padding:10px 14px;border-radius:4px;cursor:pointer;color:var(--text);transition:.3s}
+.toggle:hover{transform:rotate(180deg)}
+
+footer{text-align:center;padding:30px;margin-top:50px;background:#000;color:#aaa;font-size:13px}
+.section-title{text-align:center;margin:50px 0 25px;font-family:'Montserrat';font-size:32px;text-transform:uppercase;opacity:0;transform:translateY(20px)}
+.section-title.show{opacity:1;transform:translateY(0);transition:1s}
+.section-title span{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="loader"><i class="fa-solid fa-trophy loader-trophy"></i></div>
+
+<header>
+  <div class="wrap">
+    <h1><i class="fa-solid fa-trophy"></i> NAMA TURNAMEN KAMU</h1>
+    <nav>
+      <a href="#game">GAME</a>
+      <a href="#jadwal">JADWAL</a>
+      <a href="#leaderboard">KLASEMEN</a>
+      <a href="#rules">RULES</a>
+      <a href="#sponsor">SPONSOR</a>
+      <a href="#galeri">GALERI</a>
+      <a href="#live">LIVE</a>
+      <a href="#daftar">DAFTAR</a>
+    </nav>
+  </div>
+</header>
+
+<div class="topbar">
+  <div id="date"></div>
+  <div id="clock"></div>
+  <div><i class="fa-solid fa-globe"></i> NAMA TURNAMEN KAMU 2026</div>
+</div>
+
+<button class="toggle" onclick="toggleMode()"><i class="fa-solid fa-moon"></i></button>
+
+<section class="hero">
+  <h2>NAMA TURNAMEN KAMU 2026</h2>
+  <p>Arena Pertarungan Terbesar Mobile Legends • Free Fire • PUBG Mobile</p>
+  <div class="countdown" id="countdown"></div>
+  <a href="#daftar" class="btn">Daftar Sekarang</a>
+  <a href="#live" class="btn btn-outline"><i class="fa-solid fa-play"></i> Tonton Live</a>
+</section>
+
+<div class="container">
+  <h2 id="game" class="section-title">Cabang <span>Pertandingan</span></h2>
+  <div class="grid">
+    <div class="card scroll-animate">
+      <img src="https://placehold.co/400x200/000/FFC107?text=MOBILE+LEGENDS" alt="ML">
+      <div class="card-body">
+        <h3>Mobile Legends: Bang</h3>
+        <p><b>Prize Pool:</b> Rp 100.000.000</p>
+        <p><b>Format:</b> 5v5 | 128 Tim | Double Elimination</p>
+        <button class="btn" onclick="showNotif('Mobile Legends')">Daftar</button>
+      </div>
+    </div>
+    <div class="card scroll-animate">
+      <img src="https://placehold.co/400x200/000/FFC107?text=FREE+FIRE" alt="FF">
+      <div class="card-body">
+        <h3>Free Fire</h3>
+        <p><b>Prize Pool:</b> Rp 75.000.000</p>
+        <p><b>Format:</b> Squad | 48 Tim | Battle Royale</p>
+        <button class="btn" onclick="showNotif('Free Fire')">Daftar</button>
+      </div>
+    </div>
+    <div class="card scroll-animate">
+      <img src="https://placehold.co/400x200/000/FFC107?text=PUBG+MOBILE" alt="PUBG">
+      <div class="card-body">
+        <h3>PUBG Mobile</h3>
+        <p><b>Prize Pool:</b> Rp 80.000.000</p>
+        <p><b>Format:</b> Squad | 24 Tim | TPP</p>
+        <button class="btn" onclick="showNotif('PUBG Mobile')">Daftar</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="jadwal" class="section-title">Jadwal <span>Pertandingan</span></h2>
+  <div class="card scroll-animate">
+    <div class="card-body">
+      <table>
+        <tr><th>Tanggal</th><th>Game</th><th>Match</th><th>Waktu</th><th>Status</th></tr>
+        <tr><td>20 Agustus 2026</td><td>ML</td><td>Tim A vs Tim B</td><td>19:00 WIB</td><td>Upcoming</td></tr>
+        <tr><td>21 Agustus 2026</td><td>FF</td><td>Tim C vs Tim D</td><td>20:00 WIB</td><td>Upcoming</td></tr>
+        <tr><td>22 Agustus 2026</td><td>PUBG</td><td>Tim E vs Tim F</td><td>18:00 WIB</td><td>Upcoming</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="leaderboard" class="section-title">Klasemen <span>Grup</span></h2>
+  <div class="card scroll-animate">
+    <div class="card-body">
+      <table>
+        <tr><th>#</th><th>Tim</th><th>Game</th><th>M</th><th>W</th><th>L</th><th>Poin</th></tr>
+        <tr><td>1</td><td>TIM ALPHA</td><td>ML</td><td>10</td><td>10</td><td>0</td><td>30</td></tr>
+        <tr><td>2</td><td>TIM BETA</td><td>ML</td><td>10</td><td>9</td><td>1</td><td>27</td></tr>
+        <tr><td>3</td><td>TIM GAMMA</td><td>FF</td><td>9</td><td>8</td><td>1</td><td>24</td></tr>
+        <tr><td>4</td><td>TIM DELTA</td><td>PUBG</td><td>9</td><td>8</td><td>1</td><td>24</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="rules" class="section-title">Peraturan <span>Turnamen</span></h2>
+  <div class="card scroll-animate">
+    <div class="card-body">
+      <ul class="rules-list">
+        <li><i class="fa-solid fa-check-circle"></i> <div><b>Pendaftaran:</b> 1 Tim terdiri dari 5 Pemain Utama + 1 Cadangan. Wajib follow IG dan Join Grup WA.</div></li>
+        <li><i class="fa-solid fa-check-circle"></i> <div><b>Teknis Pertandingan:</b> Menggunakan server resmi. Dilarang cheat, bug, dan toxic. Jika terbukti = Diskualifikasi.</div></li>
+        <li><i class="fa-solid fa-check-circle"></i> <div><b>Jadwal:</b> Tim wajib hadir 30 menit sebelum match. Telat 15 menit = WO.</div></li>
+        <li><i class="fa-solid fa-check-circle"></i> <div><b>Hadiah:</b> Juara 1, 2, 3. Pajak ditanggung pemenang. Pencairan 7x24 jam setelah final.</div></li>
+        <li><i class="fa-solid fa-check-circle"></i> <div><b>Keputusan Juri:</b> Keputusan panitia bersifat mutlak dan tidak dapat diganggu gugat.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="sponsor" class="section-title">Sponsor <span>Resmi</span></h2>
+  <div class="sponsor-grid scroll-animate">
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+1" alt="Sponsor"></div>
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+2" alt="Sponsor"></div>
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+3" alt="Sponsor"></div>
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+4" alt="Sponsor"></div>
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+5" alt="Sponsor"></div>
+    <div class="sponsor-logo"><img src="https://placehold.co/150x80/FFC107/000?text=SPONSOR+6" alt="Sponsor"></div>
+  </div>
+
+  <!-- GALERI BARU -->
+  <h2 id="galeri" class="section-title">Galeri <span>Juara</span></h2>
+  <div class="gallery-grid scroll-animate">
+    <div class="gallery-item">
+      <img src="https://placehold.co/300x200/000/FFC107?text=JUARA+1+2025" alt="Juara">
+      <div class="overlay">Juara 1 - TIM ALPHA</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/300x200/000/FFC107?text=JUARA+2+2025" alt="Juara">
+      <div class="overlay">Juara 2 - TIM BETA</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/300x200/000/FFC107?text=GRAND+FINAL" alt="Final">
+      <div class="overlay">Grand Final 2025</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/300x200/000/FFC107?text=MVP+SEASON" alt="MVP">
+      <div class="overlay">MVP Season 2025</div>
+    </div>
+  </div>
+
+  <!-- LIVE STREAM BARU -->
+  <h2 id="live" class="section-title">Live <span>Streaming</span></h2>
+  <div class="live-box scroll-animate">
+    <div class="live-header">
+      <span class="live-dot"></span> SEDANG LIVE: GRAND FINAL
+    </div>
+    <!-- GANTI LINK YOUTUBE/TWITCH KAMU DISINI -->
+    <iframe class="live-iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </div>
+
+  <h2 id="daftar" class="section-title">Form <span>Pendaftaran</span></h2>
+  <div class="card scroll-animate">
+    <div class="card-body">
+      <form onsubmit="submitForm(event)">
+        <input type="text" id="namaTim" placeholder="Nama Tim" required>
+        <input type="text" id="namaKapten" placeholder="Nama Kapten" required>
+        <input type="tel" id="wa" placeholder="No WhatsApp 628xxx" required>
+        <select id="gamePilih" required>
+          <option value="">Pilih Game</option>
+          <option>Mobile Legends</option>
+          <option>Free Fire</option>
+          <option>PUBG Mobile</option>
+        </select>
+        <textarea id="anggota" placeholder="Daftar Anggota Tim" rows="3"></textarea>
+        <button type="submit" class="btn">Kirim Pendaftaran</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button id="btnUp" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast">Berhasil!</div>
+
+<footer>© 2026 Lanzz Project. All Rights Reserved.</footer>
+
+<script>
+// LOADING SCREEN
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'),1000)
+})
+
+// JAM + TANGGAL
+function updateTime(){
+  const now = new Date();
+  document.getElementById('clock').innerText = now.toLocaleTimeString('id-ID');
+  document.getElementById('date').innerText = now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+setInterval(updateTime,1000);updateTime();
+
+// COUNTDOWN
+const target = new Date(); target.setDate(target.getDate()+30);
+function countdown(){
+  const diff = target - new Date();
+  const d=Math.floor(diff/1000/60/60/24);
+  const h=Math.floor(diff/1000/60/60)%24;
+  const m=Math.floor(diff/1000/60)%60;
+  document.getElementById('countdown').innerText = `${d} HARI ${h} JAM ${m} MENIT`;
+}
+setInterval(countdown,60000);countdown();
+
+// SCROLL ANIMATE
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}})
+},{threshold:0.15});
+document.querySelectorAll('.scroll-animate, .section-title').forEach(el=>obs.observe(el));
+
+// TOMBOL UP
+window.onscroll=()=>{document.getElementById('btnUp').style.display = window.scrollY>300?'block':'none'}
+
+// DARK/LIGHT MODE
+function toggleMode(){document.body.classList.toggle('light')}
+
+// NOTIFIKASI
+function showNotif(game){
+  const t=document.getElementById('toast');
+  t.innerText=`Silahkan isi form untuk daftar ${game}`;
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
+
+// FORM DAFTAR
+function submitForm(e){
+  e.preventDefault();
+  const pesan = `PENDAFTARAN NAMA TURNAMEN KAMU%0A%0ANama Tim: ${namaTim.value}%0AKapten: ${namaKapten.value}%0AWA: ${wa.value}%0AGame: ${gamePilih.value}`;
+  window.open(`https://wa.me/6281234567890?text=${pesan}`, '_blank');
+  showNotif('Form Terkirim');
+  e.target.reset();
+}
+</script>
+</body>
+</html>
