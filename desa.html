@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DESA SAWARNA TIMUR - Kecamatan Bayah, Kabupaten Lebak</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body { font-family:'Poppins', sans-serif; background:#f8fafc; color:#333; }
+
+header { background: linear-gradient(135deg,#0d47a1,#1976d2); color:white; position:sticky; top:0; z-index:999; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+.nav { max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; }
+.logo { font-weight:700; font-size:20px; }
+.menu { display:flex; gap:20px; }
+.menu a { color:white; text-decoration:none; font-weight:500; transition:0.3s; }
+.menu a:hover { color:#ffeb3b; }
+.menu-toggle { display:none; font-size:24px; cursor:pointer; }
+
+.hero { background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') center/cover no-repeat; height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative; }
+.hero::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.5); }
+.hero-content { position:relative; z-index:2; animation:fadeUp 1.2s ease; }
+.hero h1 { font-size:48px; margin-bottom:10px; }
+.btn { background:#ff9800; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; display:inline-block; margin-top:15px; transition:0.3s; border:none; cursor:pointer; font-family:'Poppins'; font-weight:600; }
+.btn:hover { background:#e68900; transform:scale(1.05); }
+
+section { padding:60px 20px; max-width:1200px; margin:auto; }
+.section-title { text-align:center; font-size:32px; margin-bottom:40px; color:#0d47a1; opacity:0; transform:translateY(30px); transition:1s; }
+.section-title.show { opacity:1; transform:translateY(0); }
+
+.tabs { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:30px; }
+.tab-btn { padding:10px 20px; border:none; background:#e3f2fd; border-radius:6px; cursor:pointer; font-weight:600; transition:0.3s; }
+.tab-btn.active, .tab-btn:hover { background:#1976d2; color:white; }
+.tab-content { display:none; animation:fadeIn 0.6s; }
+.tab-content.active { display:block; }
+
+.card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.card { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:0.3s; opacity:0; transform:translateY(30px); }
+.card.show { opacity:1; transform:translateY(0); }
+.card:hover { transform:translateY(-5px); }
+
+/* GALERI */
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:15px; }
+.gallery-item { position:relative; overflow:hidden; border-radius:10px; cursor:pointer; }
+.gallery-item img { width:100%; height:220px; object-fit:cover; transition:0.4s; }
+.gallery-item:hover img { transform:scale(1.1); }
+.gallery-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; padding:15px; }
+
+/* FORM */
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; margin-bottom:8px; font-weight:600; }
+.form-group input, .form-group textarea, .form-group select { width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-family:'Poppins'; font-size:15px; }
+.form-group input:focus, .form-group textarea:focus { border-color:#1976d2; outline:none; }
+
+.counter { font-size:40px; font-weight:700; color:#1976d2; }
+.notif { position:fixed; bottom:20px; right:20px; background:#4caf50; color:white; padding:15px 20px; border-radius:8px; display:none; animation:slideIn 0.5s; z-index:1000; }
+
+footer { background:#0a3d91; color:white; padding:40px 20px 20px; text-align:center; }
+.footer-content { max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; text-align:left; margin-bottom:20px; }
+.footer-content h4 { margin-bottom:10px; color:#ffeb3b; }
+.copyright { border-top:1px solid rgba(255,255,255,0.2); padding-top:20px; font-size:14px; }
+.copyright a { color:#ffeb3b; text-decoration:none; font-weight:600; }
+
+@keyframes fadeUp { from{opacity:0; transform:translateY(40px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes slideIn { from{transform:translateX(100%);} to{transform:translateX(0);} }
+
+@media(max-width:768px){
+.menu { display:none; flex-direction:column; background:#0d47a1; position:absolute; top:60px; right:20px; padding:15px; border-radius:8px; }
+.menu.show { display:flex; }
+.menu-toggle { display:block; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🏛️ DESA SAWARNA TIMUR</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="#beranda">Beranda</a>
+      <a href="#profil">Profil</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#pengaduan">Pengaduan</a>
+      <a href="#berita">Berita</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="beranda">
+  <div class="hero-content">
+    <h1>Selamat Datang</h1>
+    <p>Desa Sawarna Timur, Kecamatan Bayah, Kabupaten Lebak, Provinsi Banten</p>
+    <a href="#profil" class="btn">Kenali Kami Lebih Dekat</a>
+  </div>
+</section>
+
+<section id="profil">
+  <h2 class="section-title">Profil Desa</h2>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('alamat')">Alamat Kantor</button>
+    <button class="tab-btn" onclick="openTab('sejarah')">Sejarah</button>
+    <button class="tab-btn" onclick="openTab('geografis')">Geografis</button>
+    <button class="tab-btn" onclick="openTab('demografi')">Demografi</button>
+  </div>
+
+  <div id="alamat" class="tab-content active">
+    <div class="card"><h3>Alamat Kantor</h3><p>Jl. Raya Bayah - Sawarna Timur Km. 20<br>Kecamatan: BAYAH<br>KAB. LEBAK<br>Provinsi: BANTEN<br>Kodepos: 42393<br>Telp: 08345678910</p></div>
+  </div>
+  <div id="sejarah" class="tab-content"><div class="card"><h3>Sejarah</h3><p>Desa Sawarna Timur pemekaran dari Desa Sawarna sejak tahun 2009. Resmi berdasarkan Perbup Lebak No. 116 Tahun 2022.</p></div></div>
+  <div id="geografis" class="tab-content"><div class="card"><h3>Batas Wilayah</h3><p><b>Utara:</b> Desa Lebak Tipar<br><b>Selatan:</b> Laut Hindia<br><b>Timur:</b> Desa Cilograng<br><b>Barat:</b> Desa Sawarna</p></div></div>
+  <div id="demografi" class="tab-content"><div class="card"><h3>Data Statistik</h3><div class="counter" data-target="3500">0</div><p>Jumlah Penduduk</p></div></div>
+</section>
+
+<section id="layanan">
+  <h2 class="section-title">Layanan Desa</h2>
+  <div class="card-grid">
+    <div class="card"><h4>📄 Surat Keterangan</h4><p>Pengajuan surat online</p></div>
+    <div class="card"><h4>💰 APBDesa</h4><p>Transparansi anggaran</p></div>
+    <div class="card"><h4>🏥 Kesehatan</h4><p>Jadwal posyandu</p></div>
+  </div>
+</section>
+
+<!-- HALAMAN GALERI BARU -->
+<section id="galeri">
+  <h2 class="section-title">Galeri Foto Desa</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Pantai">
+      <div class="gallery-caption">Pantai Sawarna Timur</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b" alt="Gotong Royong">
+      <div class="gallery-caption">Kegiatan Gotong Royong</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9" alt="Pertanian">
+      <div class="gallery-caption">Lahan Pertanian Warga</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000" alt="Kantor Desa">
+      <div class="gallery-caption">Kantor Desa Sawarna Timur</div>
+    </div>
+  </div>
+</section>
+
+<!-- HALAMAN PENGADUAN BARU -->
+<section id="pengaduan">
+  <h2 class="section-title">Form Pengaduan Warga</h2>
+  <div class="card">
+    <form onsubmit="kirimPengaduan(event)">
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" required placeholder="Masukkan nama anda">
+      </div>
+      <div class="form-group">
+        <label>Nomor HP / WhatsApp</label>
+        <input type="tel" id="hp" required placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="form-group">
+        <label>Kategori Pengaduan</label>
+        <select id="kategori" required>
+          <option value="">Pilih Kategori</option>
+          <option>Infrastruktur Jalan</option>
+          <option>Kebersihan</option>
+          <option>Pelayanan Administrasi</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Isi Pengaduan</label>
+        <textarea id="pesan" rows="5" required placeholder="Tuliskan pengaduan anda..."></textarea>
+      </div>
+      <button type="submit" class="btn">Kirim Pengaduan</button>
+    </form>
+  </div>
+</section>
+
+<section id="berita">
+  <h2 class="section-title">Berita & Kegiatan</h2>
+  <div class="card-grid">
+    <div class="card"><h4>Gotong Royong Desa</h4><p>Kegiatan rutin setiap hari jumat.</p></div>
+    <div class="card"><h4>Pembangunan Jalan</h4><p>Proyek infrastruktur menuju pantai.</p></div>
+  </div>
+</section>
+
+<section id="kontak">
+  <h2 class="section-title">Hubungi Kami</h2>
+  <div class="card">
+    <p><b>Alamat:</b> Kecamatan Bayah, Kabupaten Lebak, Banten 42393</p>
+    <p><b>Telepon:</b> +62 8345678910</p>
+    <button class="btn" onclick="showNotif()">Kirim Pesan</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div><h4>Desa Sawarna Timur</h4><p>Jl. Raya Bayah - Sawarna Timur Km. 20<br>Bayah, Lebak, Banten 42393</p></div>
+    <div><h4>Kontak</h4><p>📞 08345678910</p></div>
+    <div><h4>Pengembang Website</h4><p><a href="#">Lanzz Project</a></p></div>
+  </div>
+  <div class="copyright">
+    © <span id="year"></span> <a href="#">Lanzz Project</a>. All Rights Reserved.
+  </div>
+</footer>
+
+<div class="notif" id="notif">Pengaduan berhasil dikirim! ✅</div>
+
+<script>
+function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
+function openTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+},{threshold:0.2});
+document.querySelectorAll('.section-title, .card').forEach(el=>observer.observe(el));
+
+function animateCounter(){
+  document.querySelectorAll('.counter').forEach(counter=>{
+    const target = +counter.getAttribute('data-target'); let count = 0;
+    const speed = target/100;
+    const update = () => {
+      count += speed;
+      if(count < target){ counter.innerText = Math.ceil(count); requestAnimationFrame(update); }
+      else { counter.innerText = target; }
+    }
+    update();
+  });
+}
+animateCounter();
+
+// FUNGSI BARU: SIMPAN PENGADUAN KE LOCALSTORAGE "DATABASE"
+function kirimPengaduan(e){
+  e.preventDefault();
+  const data = {
+    nama: document.getElementById('nama').value,
+    hp: document.getElementById('hp').value,
+    kategori: document.getElementById('kategori').value,
+    pesan: document.getElementById('pesan').value,
+    tanggal: new Date().toLocaleString()
+  };
+  let pengaduan = JSON.parse(localStorage.getItem('pengaduan')) || [];
+  pengaduan.push(data);
+  localStorage.setItem('pengaduan', JSON.stringify(pengaduan));
+  
+  document.getElementById('notif').innerText = 'Pengaduan berhasil dikirim! ✅';
+  document.getElementById('notif').style.display='block';
+  setTimeout(()=>document.getElementById('notif').style.display='none',3000);
+  e.target.reset();
+}
+
+function showNotif(){
+  document.getElementById('notif').innerText = 'Pesan berhasil dikirim! ✅';
+  document.getElementById('notif').style.display='block';
+  setTimeout(()=>document.getElementById('notif').style.display='none',3000);
+}
+
+document.getElementById('year').innerText = new Date().getFullYear();
+</script>
+
+</body>
+</html>
