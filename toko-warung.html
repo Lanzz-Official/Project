@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME - Toko & Warung Terlengkap</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#2563EB;--primary2:#1D4ED8;--accent:#F59E0B;--bg:#F8FAFC;--card:#fff;--text:#1E293B;--sub:#64748B;--border:#E2E8F0;--success:#16A34A;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes shake{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(15deg)}20%,40%{transform:rotate(-15deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:20px;right:20px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;animation:shake 2s infinite;box-shadow:0 4px 20px rgba(37,211,102,.5);}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:998;background:linear-gradient(90deg,var(--primary),var(--primary2));padding:15px 20px;box-shadow:0 4px 10px rgba(0,0,0,.1);}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;max-width:1200px;margin:auto;}
+.logo{font-size:22px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
+.search{flex:1;max-width:500px;background:#fff;border-radius:50px;padding:10px 20px;display:flex;align-items:center;gap:10px;}
+.search input{border:none;outline:none;width:100%;font-size:14px;}
+.cart-btn{background:#fff;color:var(--primary);padding:10px 18px;border-radius:50px;font-weight:700;cursor:pointer;display:flex;gap:8px;align-items:center}
+
+/* HERO BANNER */
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));padding:40px 20px;color:#fff;text-align:center}
+.hero h1{font-size:32px;font-weight:700;margin-bottom:10px;animation:fadeIn 1s}
+.hero p{font-size:16px;opacity:.9;margin-bottom:20px}
+.hero-btn{display:inline-block;padding:12px 30px;background:var(--accent);color:#fff;border-radius:50px;font-weight:700;text-decoration:none;animation:pulse 2s infinite}
+
+/* KATEGORI */
+.categories{max-width:1200px;margin:30px auto;padding:0 20px}
+.section-title{font-size:22px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+@media (max-width:768px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
+.cat-item{background:var(--card);padding:20px;border-radius:12px;text-align:center;cursor:pointer;transition:.3s;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.cat-item:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(37,99,235,.2)}
+.cat-item i{font-size:32px;color:var(--primary);margin-bottom:8px}
+
+/* PRODUK */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+@media (min-width:768px){.grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+@media (min-width:1024px){.grid{grid-template-columns:repeat(5,1fr)}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.3s;cursor:pointer;animation:fadeUp.6s ease-out forwards}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.card img{width:100%;height:160px;object-fit:cover}
+.badge{position:absolute;margin:8px;background:var(--accent);color:#fff;font-size:10px;padding:4px 8px;border-radius:20px;font-weight:700}
+.card-body{padding:12px}
+.card h3{font-size:14px;height:38px;overflow:hidden;line-height:19px;margin-bottom:6px}
+.harga{color:var(--primary);font-size:16px;font-weight:700}
+.stok{font-size:11px;color:var(--success);margin-top:4px}
+.btn-beli{width:100%;margin-top:8px;padding:8px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:.3s}
+.btn-beli:hover{background:var(--primary2)}
+
+/* PROMO BANNER */
+.promo-banner{background:linear-gradient(90deg,#F59E0B,#F97316);color:#fff;padding:20px;border-radius:12px;margin:30px auto;max-width:1200px;text-align:center}
+.promo-banner h2{font-size:24px;margin-bottom:8px}
+
+/* KERANJANG POPUP */
+.cart-popup{position:fixed;top:0;right:-400px;width:380px;max-width:90%;height:100%;background:var(--card);z-index:1002;transition:.4s;box-shadow:-5px 0 20px rgba(0,0,0,.2);padding:20px;overflow-y:auto}
+.cart-popup.show{right:0}
+.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:18px;font-weight:700}
+
+/* BOTTOM BAR HP */
+.bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--card);padding:12px;box-shadow:0 -2px 10px rgba(0,0,0,.1);gap:10px;z-index:998}
+.bottom-bar a{flex:1;text-align:center;padding:12px;border-radius:10px;text-decoration:none;font-weight:700;color:#fff}
+.btn-wa{background:#25D366}.btn-cart{background:var(--primary)}
+@media (max-width:768px){.bottom-bar{display:flex}}
+
+/* FOOTER */
+footer{background:var(--text);color:#fff;padding:40px 20px;margin-top:60px;margin-bottom:80px;text-align:center}
+.cta-back{display:inline-block;padding:15px 40px;background:var(--accent);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:16px;transition:.3s}
+.cta-back:hover{transform:scale(1.05)}
+.footer-info{display:flex;justify-content:center;gap:30px;margin:20px 0;flex-wrap:wrap;font-size:14px}
+.footer-info div{display:flex;align-items:center;gap:8px}
+
+/* TOAST */
+.toast{position:fixed;top:80px;right:20px;background:var(--success);color:#fff;padding:14px 20px;border-radius:8px;transform:translateX(400px);transition:.4s;z-index:1000;font-weight:600}
+.toast.show{transform:translateX(0)}
+</style>
+</head>
+<body>
+
+<a href="https://wa.me/628xxx" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<header>
+<div class="topbar">
+<div class="logo"><i class="fa-solid fa-store"></i> YOUR NAME</div>
+<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="searchInput" placeholder="Cari sembako, snack, minuman..."></div>
+<div class="cart-btn" onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span></div>
+</div>
+</header>
+
+<section class="hero">
+<h1>Belanja Kebutuhan Warung Lebih Mudah</h1>
+<p>Gratis Ongkir Wilayah Kota + Harga Grosir</p>
+<a href="#produk" class="hero-btn">Belanja Sekarang</a>
+</section>
+
+<div class="categories">
+<h2 class="section-title"><i class="fa-solid fa-grid-2"></i> Kategori Produk</h2>
+<div class="cat-grid">
+<div class="cat-item" onclick="filterCat('sembako')"><i class="fa-solid fa-basket-shopping"></i><p>Sembako</p></div>
+<div class="cat-item" onclick="filterCat('minuman')"><i class="fa-solid fa-bottle-water"></i><p>Minuman</p></div>
+<div class="cat-item" onclick="filterCat('snack')"><i class="fa-solid fa-cookie"></i><p>Snack</p></div>
+<div class="cat-item" onclick="filterCat('kebersihan')"><i class="fa-solid fa-soap"></i><p>Kebersihan</p></div>
+</div>
+</div>
+
+<div class="promo-banner">
+<h2>PROMO HARI INI</h2>
+<p>Beli 2 Gratis 1 untuk semua produk Mie Instan</p>
+</div>
+
+<div class="container" id="produk">
+<h2 class="section-title"><i class="fa-solid fa-fire"></i> Produk Terlaris</h2>
+<div class="grid" id="productGrid">
+
+<!-- 10 PRODUK WARUNG -->
+<div class="card" data-name="beras premium 5kg sembako" data-harga="65000">
+<span class="badge">GROSIR</span>
+<img src="https://via.placeholder.com/300x300/2563EB/ffffff?text=BERAS">
+<div class="card-body">
+<h3>Beras Premium 5kg</h3>
+<div class="harga">Rp 65.000</div>
+<div class="stok">Stok: 50</div>
+<button class="btn-beli" onclick="addCart(event,'Beras Premium 5kg',65000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="minyak goreng bimoli 2l sembako" data-harga="32000">
+<img src="https://via.placeholder.com/300x300/F59E0B/ffffff?text=MINYAK">
+<div class="card-body">
+<h3>Minyak Goreng Bimoli 2L</h3>
+<div class="harga">Rp 32.000</div>
+<div class="stok">Stok: 30</div>
+<button class="btn-beli" onclick="addCart(event,'Minyak Goreng Bimoli 2L',32000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="mie sedap goreng snack" data-harga="3500">
+<span class="badge">PROMO</span>
+<img src="https://via.placeholder.com/300x300/16A34A/ffffff?text=MIE">
+<div class="card-body">
+<h3>Mie Sedap Goreng</h3>
+<div class="harga">Rp 3.500</div>
+<div class="stok">Stok: 200</div>
+<button class="btn-beli" onclick="addCart(event,'Mie Sedap Goreng',3500)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="aqua 600ml minuman" data-harga="4000">
+<img src="https://via.placeholder.com/300x300/0EA5E9/ffffff?text=AQUA">
+<div class="card-body">
+<h3>Aqua 600ml Dus 24pcs</h3>
+<div class="harga">Rp 4.000</div>
+<div class="stok">Stok: 100</div>
+<button class="btn-beli" onclick="addCart(event,'Aqua 600ml',4000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="sabun lifebuoy kebersihan" data-harga="4500">
+<img src="https://via.placeholder.com/300x300/EC4899/ffffff?text=SABUN">
+<div class="card-body">
+<h3>Sabun Lifebuoy 70gr</h3>
+<div class="harga">Rp 4.500</div>
+<div class="stok">Stok: 80</div>
+<button class="btn-beli" onclick="addCart(event,'Sabun Lifebuoy',4500)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="chiki snack" data-harga="2000">
+<img src="https://via.placeholder.com/300x300/F97316/ffffff?text=CHIKI">
+<div class="card-body">
+<h3>Chiki Twist 25gr</h3>
+<div class="harga">Rp 2.000</div>
+<div class="stok">Stok: 150</div>
+<button class="btn-beli" onclick="addCart(event,'Chiki Twist',2000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="susu indomilk minuman" data-harga="6000">
+<img src="https://via.placeholder.com/300x300/FACC15/ffffff?text=SUSU">
+<div class="card-body">
+<h3>Susu Indomilk 200ml</h3>
+<div class="harga">Rp 6.000</div>
+<div class="stok">Stok: 120</div>
+<button class="btn-beli" onclick="addCart(event,'Susu Indomilk',6000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="gula pasir 1kg sembako" data-harga="16000">
+<img src="https://via.placeholder.com/300x300/94A3B8/ffffff?text=GULA">
+<div class="card-body">
+<h3>Gula Pasir 1kg</h3>
+<div class="harga">Rp 16.000</div>
+<div class="stok">Stok: 60</div>
+<button class="btn-beli" onclick="addCart(event,'Gula Pasir 1kg',16000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="teh sosro minuman" data-harga="4000">
+<span class="badge">BEST</span>
+<img src="https://via.placeholder.com/300x300/22C55E/ffffff?text=TEH">
+<div class="card-body">
+<h3>Teh Botol Sosro 450ml</h3>
+<div class="harga">Rp 4.000</div>
+<div class="stok">Stok: 90</div>
+<button class="btn-beli" onclick="addCart(event,'Teh Sosro',4000)">+ Keranjang</button>
+</div>
+</div>
+
+<div class="card" data-name="detergen rinso kebersihan" data-harga="25000">
+<img src="https://via.placeholder.com/300x300/6366F1/ffffff?text=RINSO">
+<div class="card-body">
+<h3>Detergen Rinso 800gr</h3>
+<div class="harga">Rp 25.000</div>
+<div class="stok">Stok: 40</div>
+<button class="btn-beli" onclick="addCart(event,'Rinso 800gr',25000)">+ Keranjang</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="bottom-bar">
+<a href="https://wa.me/628xxx" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+<a href="#" onclick="toggleCart()" class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cartCount2">0</span>)</a>
+</div>
+
+<!-- KERANJANG -->
+<div class="cart-popup" id="cartPopup">
+<div class="cart-header">
+<h3>Keranjang Belanja</h3>
+<i class="fa-solid fa-xmark" style="cursor:pointer" onclick="toggleCart()"></i>
+</div>
+<div id="cartItems"><p style="text-align:center;color:var(--sub)">Keranjang kosong</p></div>
+<h3 style="margin:20px 0 10px">Total: <span id="totalHarga">Rp 0</span></h3>
+<button onclick="checkout()" style="width:100%;padding:14px;background:var(--success);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:16px;">Order via WhatsApp</button>
+</div>
+
+<footer>
+<div class="footer-info">
+<div><i class="fa-solid fa-location-dot"></i> Alamat: Jl. Merdeka No. 123</div>
+<div><i class="fa-solid fa-clock"></i> Buka: 07.00 - 21.00</div>
+<div><i class="fa-solid fa-phone"></i> 0812-xxxx-xxxx</div>
+</div>
+<p style="font-size:13px;margin-top:15px;opacity:.8">© 2026 Lanzz Project. All Rights Reserved. Toko Kelontong Terpercaya</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let cart = [];
+
+// SEARCH
+document.getElementById('searchInput').addEventListener('keyup', function(){
+let filter = this.value.toLowerCase();
+document.querySelectorAll('#productGrid.card').forEach(card=>{
+let text = card.dataset.name;
+card.style.display = text.includes(filter) ? '' : 'none';
+});
+});
+
+// FILTER KATEGORI
+function filterCat(cat){
+document.getElementById('searchInput').value = cat;
+document.getElementById('searchInput').dispatchEvent(new Event('keyup'));
+}
+
+// KERANJANG
+function addCart(e,nama,harga){
+e.stopPropagation();
+cart.push({nama,harga});
+updateCart();
+showToast(nama+' ditambah ke keranjang');
+}
+function toggleCart(){document.getElementById('cartPopup').classList.toggle('show');}
+function updateCart(){
+document.getElementById('cartCount').innerText = cart.length;
+document.getElementById('cartCount2').innerText = cart.length;
+let wrap = document.getElementById('cartItems');
+let total = 0;
+if(cart.length==0){wrap.innerHTML='<p style="text-align:center;color:var(--sub)">Keranjang kosong</p>';}
+else{
+wrap.innerHTML = '';
+cart.forEach((item,i)=>{
+total += item.harga;
+wrap.innerHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+<div><b>${item.nama}</b><br><span style="color:var(--primary)">Rp ${item.harga.toLocaleString()}</span></div>
+<i class="fa-solid fa-trash" style="color:red;cursor:pointer" onclick="cart.splice(${i},1);updateCart()"></i>
+</div>`
+})
+}
+document.getElementById('totalHarga').innerText = 'Rp ' + total.toLocaleString();
+}
+function checkout(){
+if(cart.length==0){showToast('Keranjang kosong');return;}
+let pesan = 'Halo YOUR NAME, saya mau order:%0A%0A';
+cart.forEach(i=>{pesan += `- ${i.nama} : Rp${i.harga.toLocaleString()}%0A`});
+pesan += `%0ATotal: Rp${cart.reduce((a,b)=>a+b.harga,0).toLocaleString()}`;
+window.open(`https://wa.me/628xxx?text=${pesan}`,'_blank');
+}
+
+// TOAST
+function showToast(msg){let t=document.getElementById('toast'); t.innerText=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ANIMASI SCROLL
+document.querySelectorAll('.card').forEach((el,i)=>{el.style.animationDelay=i*0.1+'s';})
+</script>
+
+</body>
+</html>
