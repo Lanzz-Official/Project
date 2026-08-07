@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#ff00ff">
+<title>Your Name Game Booster - Lanzz Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Russo One', sans-serif; user-select:none; }
+body { background:radial-gradient(circle at center,#1a0033,#000); color:#fff; overflow:hidden; }
+
+/* BG RGB ANIMASI */
+.bg-rgb { position:fixed; inset:0; background:linear-gradient(45deg,#ff00ff,#00ffff,#ff00ff); background-size:400% 400%; animation:bgMove 8s ease infinite; opacity:0.15; z-index:0; }
+@keyframes bgMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+.container { position:relative; z-index:2; padding:20px; max-width:500px; margin:auto; text-align:center; padding-bottom:100px; overflow-y:auto; height:100vh; }
+
+.logo { font-size:26px; margin:20px 0; color:#00ffff; text-shadow:0 0 10px #00ffff, 0 0 20px #ff00ff; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+
+/* BOTTOM NAV */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(15px); display:flex; justify-content:space-around; padding:12px 0; border-top:2px solid rgba(0,255,255,0.3); z-index:10; }
+.nav-item { text-align:center; color:#aaa; font-size:11px; cursor:pointer; transition:0.3s; }
+.nav-item.active { color:#00ffff; transform:translateY(-3px); }
+.nav-item i { font-size:20px; display:block; margin-bottom:3px; }
+
+.page { display:none; animation:slideUp 0.5s; }
+.page.active { display:block; }
+@keyframes slideUp { from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+
+.card { background:rgba(0,0,0,0.4); border:2px solid rgba(0,255,255,0.3); border-radius:20px; padding:25px; margin-bottom:20px; backdrop-filter:blur(10px); transform:translateY(60px); opacity:0; transition:0.8s; }
+.card.show { transform:translateY(0); opacity:1; }
+
+.gauge { width:200px; height:200px; margin:20px auto; position:relative; }
+.gauge svg { transform:rotate(-90deg); }
+.gauge-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+.gauge-text h1 { font-size:50px; color:#00ffff; }
+.gauge-text p { font-size:12px; opacity:0.7; }
+
+.btn-game { width:100%; padding:18px; font-size:18px; border:none; border-radius:15px; background:linear-gradient(90deg,#ff00ff,#00ffff); color:#000; cursor:pointer; transition:0.2s; box-shadow:0 0 25px rgba(0,255,255,0.6); margin-top:10px; }
+.btn-game:active { transform:scale(0.92); box-shadow:0 0 50px rgba(255,0,255,1); }
+.btn-danger { background:linear-gradient(90deg,#ff0044,#ff8800); }
+
+.grid-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.stat { background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; border:1px solid rgba(0,255,255,0.2); }
+.stat h3 { font-size:20px; color:#ff00ff; }
+
+/* GAME LIST */
+.game-item { display:flex; align-items:center; background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; margin-bottom:10px; border:1px solid rgba(0,255,255,0.1); transition:0.3s; }
+.game-item:hover { border-color:#00ffff; transform:translateX(5px); }
+.game-icon { width:50px; height:50px; background:linear-gradient(135deg,#ff00ff,#00ffff); border-radius:12px; margin-right:12px; display:flex; align-items:center; justify-content:center; font-size:24px; }
+.game-info { flex:1; text-align:left; }
+.game-info h4 { font-size:16px; }
+.game-info p { font-size:12px; opacity:0.6; }
+
+.notif { position:fixed; top:20px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#ff00ff,#00ffff); color:#000; padding:12px 25px; border-radius:10px; font-weight:700; display:none; animation:drop 0.5s; z-index:999; }
+@keyframes drop { from{top:-60px;} to{top:20px;} }
+
+.explosion { position:absolute; width:10px; height:10px; border-radius:50%; background:#fff; pointer-events:none; animation:boom 0.6s forwards; }
+@keyframes boom { to{transform:scale(20); opacity:0;} }
+
+footer { text-align:center; padding:20px 0; font-size:11px; opacity:0.6; }
+footer a { color:#00ffff; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-rgb"></div>
+
+<div class="container">
+
+  <!-- PAGE BOOST -->
+  <div id="boost" class="page active">
+    <div class="logo">YOUR NAME GAME BOOSTER</div>
+    <div class="card">
+      <div class="gauge">
+        <svg width="200" height="200">
+          <circle cx="100" cy="100" r="90" stroke="rgba(0,255,255,0.2)" stroke-width="12" fill="none"/>
+          <circle id="progress" cx="100" cy="100" r="90" stroke="#00ffff" stroke-width="12" fill="none" stroke-dasharray="565" stroke-dashoffset="565"/>
+        </svg>
+        <div class="gauge-text">
+          <h1 id="fps">0</h1>
+          <p>FPS BOOST</p>
+        </div>
+      </div>
+      <button class="btn-game" onclick="boostGame(event)">🚀 BOOST GAME 🚀</button>
+      <button class="btn-game btn-danger" onclick="cleanRAM()">🧹 BERSIHKAN RAM</button>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:15px;">STATISTIK</h3>
+      <div class="grid-stats">
+        <div class="stat"><h3 id="totalBoost">0</h3><p>Boost</p></div>
+        <div class="stat"><h3 id="bestFps">0</h3><p>Best FPS</p></div>
+        <div class="stat"><h3 id="gameTime">0m</h3><p>Play Time</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE GAME LIST BARU -->
+  <div id="gamelist" class="page">
+    <div class="logo">DAFTAR GAME</div>
+    <div class="card">
+      <h3 style="margin-bottom:15px;">BOOST GAME TERINSTALL</h3>
+      <div id="gameList">
+        <div class="game-item"><div class="game-icon">🎮</div><div class="game-info"><h4>Mobile Legends</h4><p>Boost untuk performa maksimal</p></div></div>
+        <div class="game-item"><div class="game-icon">🔫</div><div class="game-info"><h4>Free Fire</h4><p>Tingkatkan FPS & Kurangi Lag</p></div></div>
+        <div class="game-item"><div class="game-icon">🏎️</div><div class="game-info"><h4>PUBG Mobile</h4><p>Optimalkan Grafis Game</p></div></div>
+        <div class="game-item"><div class="game-icon">⚽</div><div class="game-info"><h4>eFootball</h4><p>Stabilkan Koneksi</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE RIWAYAT -->
+  <div id="history" class="page">
+    <div class="logo">RIWAYAT</div>
+    <div class="card">
+      <h3>RIWAYAT BOOST</h3>
+      <div id="historyList" style="text-align:left; margin-top:10px; font-size:14px;"></div>
+    </div>
+  </div>
+
+  <footer>
+    © <span id="year"></span> <a href="#">Lanzz Project</a>. Game Booster Premium
+  </footer>
+
+</div>
+
+<!-- BOTTOM NAV BARU -->
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="switchPage('boost', this)"><i>🚀</i>Boost</div>
+  <div class="nav-item" onclick="switchPage('gamelist', this)"><i>🎮</i>Games</div>
+  <div class="nav-item" onclick="switchPage('history', this)"><i>📊</i>Riwayat</div>
+</div>
+
+<div class="notif" id="notif">Berhasil!</div>
+<audio id="boostSfx" src="https://cdn.pixabay.com/audio/2025/04/22/audio_8b8e6c9e8a.mp3"></audio>
+<audio id="cleanSfx" src="https://cdn.pixabay.com/audio/2024/12/06/audio_8b8e6c9e8a.mp3"></audio>
+
+<script>
+// NAVIGASI PAGE
+function switchPage(id, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+  setTimeout(()=>document.querySelectorAll('.card').forEach((c,i)=>setTimeout(()=>c.classList.add('show'), i*200)), 100);
+}
+
+// DATABASE
+let db = JSON.parse(localStorage.getItem('lanzz_gamebooster')) || {total:0, best:0, time:0, history:[]};
+let playTimer = setInterval(()=>{ db.time++; localStorage.setItem('lanzz_gamebooster', JSON.stringify(db)); updateUI(); }, 60000);
+
+function boostGame(e){
+  createExplosion(e.clientX, e.clientY);
+  document.getElementById('boostSfx').play();
+  if(navigator.vibrate) navigator.vibrate(150);
+  
+  let fps = Math.floor(Math.random() * 60) + 40;
+  animateFPS(fps);
+  
+  db.total++;
+  if(fps > db.best) db.best = fps;
+  db.history.unshift({type:'Boost', fps, time: new Date().toLocaleTimeString()});
+  if(db.history.length > 10) db.history.pop();
+  localStorage.setItem('lanzz_gamebooster', JSON.stringify(db));
+  
+  updateUI();
+  showNotif(`Game Boost +${fps} FPS!`);
+}
+
+// FITUR BARU: BERSIHKAN RAM
+function cleanRAM(){
+  document.getElementById('cleanSfx').play();
+  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  
+  let ram = Math.floor(Math.random() * 800) + 200;
+  db.history.unshift({type:'Clean', ram, time: new Date().toLocaleTimeString()});
+  localStorage.setItem('lanzz_gamebooster', JSON.stringify(db));
+  
+  updateUI();
+  showNotif(`Berhasil Bersihkan ${ram} MB RAM!`);
+}
+
+function createExplosion(x,y){
+  const boom = document.createElement('div');
+  boom.className = 'explosion';
+  boom.style.left = x + 'px';
+  boom.style.top = y + 'px';
+  document.body.appendChild(boom);
+  setTimeout(()=>boom.remove(), 600);
+}
+
+function animateFPS(target){
+  let el = document.getElementById('fps');
+  let circle = document.getElementById('progress');
+  let count = 0;
+  let offset = 565;
+  let timer = setInterval(()=>{
+    count += target/30;
+    offset -= 565/30;
+    if(count >= target){ count = target; offset = 565 - (target/100)*565; clearInterval(timer); }
+    el.innerText = Math.floor(count);
+    circle.style.strokeDashoffset = offset;
+  }, 30);
+}
+
+function showNotif(msg){
+  let n = document.getElementById('notif');
+  n.innerText = msg;
+  n.style.display = 'block';
+  setTimeout(()=>n.style.display='none', 2000);
+}
+
+function updateUI(){
+  document.getElementById('totalBoost').innerText = db.total;
+  document.getElementById('bestFps').innerText = db.best;
+  document.getElementById('gameTime').innerText = db.time + 'm';
+  let html = '';
+  db.history.forEach(h=>{
+    if(h.type === 'Boost') html += `<p>🚀 Boost ${h.fps} FPS - <small style="opacity:0.6;">${h.time}</small></p>`;
+    else html += `<p>🧹 Bersih ${h.ram} MB - <small style="opacity:0.6;">${h.time}</small></p>`;
+  });
+  document.getElementById('historyList').innerHTML = html || '<p style="opacity:0.5;">Belum ada riwayat</p>';
+}
+updateUI();
+
+// COPYRIGHT
+document.getElementById('year').innerText = new Date().getFullYear();
+</script>
+</body>
+</html>
