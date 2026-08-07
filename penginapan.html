@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VILA SAWARNA PARADISE | Penginapan & Vila di Sawarna</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+<style>
+:root{
+--emas:#D4AF37;--coklat:#8B4513;--bg:#FFF8F0;--card:#FFFFFF;--text:#2D2D2D;--text2:#6B7280;--gradient:linear-gradient(135deg,#D4AF37,#8B4513);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);}
+#particles-js{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+.navbar{position:fixed;top:0;width:100%;z-index:999;background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:15px 30px;transition:0.3s;}
+.navbar.scrolled{background:rgba(255,255,255,0.98);box-shadow:0 2px 20px rgba(0,0,0,0.1);}
+.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:18px;color:var(--coklat);}
+.nav-links{display:flex;gap:25px;font-size:11px;font-weight:600;}
+.nav-links a{color:var(--text);text-decoration:none;transition:0.3s;}
+.nav-links a:hover{color:var(--emas);}
+.btn-booking{background:var(--gradient);color:#fff;padding:10px 20px;border-radius:50px;font-size:10px;font-weight:700;text-decoration:none;}
+.hero{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070) center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,0.5);}
+.hero p{font-size:14px;margin:15px 0 25px;}
+.btn{padding:14px 30px;background:var(--gradient);color:#fff;border:none;border-radius:50px;font-weight:700;font-size:12px;cursor:pointer;transition:0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(212,175,55,0.6);}
+.container{max-width:1200px;margin:0 auto;padding:60px 20px;}
+.section-title{text-align:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--coklat);margin-bottom:40px;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
+.room-card{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.08);transition:0.4s;cursor:pointer;}
+.room-card:hover{transform:translateY(-10px);border:2px solid var(--emas);}
+.room-card.active{border:3px solid var(--emas);}
+.room-card img{width:100%;height:220px;object-fit:cover;}
+.room-info{padding:20px;}
+.room-info h3{font-size:16px;font-weight:700;margin-bottom:5px;}
+.room-info p{font-size:11px;color:var(--text2);margin-bottom:10px;}
+.price{color:var(--emas);font-size:18px;font-weight:800;}
+.booking-form{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);max-width:700px;margin:0 auto;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+.form-group{margin-bottom:15px;}
+.form-group label{font-size:11px;font-weight:600;display:block;margin-bottom:5px;}
+.form-group input,.form-group select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:11px;}
+.total-harga{background:var(--gradient);color:#fff;padding:15px;border-radius:12px;text-align:center;font-weight:800;font-size:16px;margin:15px 0;}
+.facilities{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+.fac-item{background:var(--card);padding:25px;border-radius:18px;}
+.fac-item i{font-size:32px;color:var(--emas);margin-bottom:10px;}
+.galeri{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
+.galeri img{width:100%;height:200px;object-fit:cover;border-radius:15px;transition:0.3s;}
+.galeri img:hover{transform:scale(1.05);}
+.map-box{border-radius:18px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+.map-box iframe{width:100%;height:350px;border:0;}
+footer{background:var(--text);color:#fff;text-align:center;padding:30px 20px;font-size:10px;}
+footer b{color:var(--emas);}
+#backToTop{position:fixed;bottom:20px;right:20px;width:45px;height:45px;background:var(--gradient);color:#fff;border:none;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:16px;z-index:999;cursor:pointer;}
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--card);padding:12px 20px;border-radius:12px;font-size:11px;font-weight:600;border:1px solid var(--emas);opacity:0;transition:0.3s;z-index:1000;box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+.toast.show{opacity:1;bottom:80px;}
+.cta-home{text-align:center;margin-top:50px;padding:30px;background:var(--gradient);border-radius:20px;color:#fff;}
+.cta-home a{background:#fff;color:var(--coklat);padding:14px 35px;border-radius:50px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+</style>
+</head>
+<body>
+<div id="particles-js"></div>
+<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast">Selamat Datang di Vila Sawarna Paradise</div>
+
+<nav class="navbar" id="navbar">
+<div class="logo">VILA SAWARNA PARADISE</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#kamar">Kamar</a>
+<a href="#booking">Booking</a>
+<a href="#galeri">Galeri</a>
+<a href="#kontak">Kontak</a>
+</div>
+<a href="#booking" class="btn-booking"><i class="fa-solid fa-calendar-check"></i> Booking Sekarang</a>
+</nav>
+
+<section class="hero" id="home" data-aos="fade">
+<div>
+<h1>Pengalaman Menginap Terbaik<br>di Tepi Pantai Sawarna</h1>
+<p>Vila Mewah dengan View Laut | Private Pool | Free Breakfast</p>
+<a href="#booking" class="btn"><i class="fa-solid fa-calendar-check"></i> Booking Sekarang</a>
+</div>
+</section>
+
+<div class="container">
+<section id="kamar" data-aos="fade-up">
+<h2 class="section-title">Pilih Kamar & Vila</h2>
+<div class="card-grid">
+<div class="room-card" data-harga="750000" data-nama="Deluxe Ocean View">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070">
+<div class="room-info">
+<h3>Deluxe Ocean View</h3>
+<p>Kamar luas dengan balkon menghadap laut + AC + TV</p>
+<div class="price">Rp 750.000 <span style="font-size:10px;color:var(--text2)">/malam</span></div>
+</div>
+</div>
+<div class="room-card" data-harga="1500000" data-nama="Vila Family 2 Kamar">
+<img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=2070">
+<div class="room-info">
+<h3>Vila Family 2 Kamar</h3>
+<p>Cocok untuk 4-5 orang. Ada dapur & ruang tamu</p>
+<div class="price">Rp 1.500.000 <span style="font-size:10px;color:var(--text2)">/malam</span></div>
+</div>
+</div>
+<div class="room-card" data-harga="2800000" data-nama="Vila Private Pool">
+<img src="https://images.unsplash.com/photo-1582719478250-247d8b8c3d6d?q=80&w=2070">
+<div class="room-info">
+<h3>Vila Private Pool</h3>
+<p>Kolam renang pribadi + Jacuzzi + Breakfast</p>
+<div class="price">Rp 2.800.000 <span style="font-size:10px;color:var(--text2)">/malam</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="booking" data-aos="fade-up">
+<h2 class="section-title">Form Booking</h2>
+<div class="booking-form">
+<div class="form-grid">
+<div class="form-group">
+<label>Nama Lengkap</label>
+<input type="text" id="nama" placeholder="Masukkan nama">
+</div>
+<div class="form-group">
+<label>No WhatsApp</label>
+<input type="number" id="wa" placeholder="08xxxxxxxxxx">
+</div>
+<div class="form-group">
+<label>Tanggal Check-in</label>
+<input type="date" id="checkin">
+</div>
+<div class="form-group">
+<label>Tanggal Check-out</label>
+<input type="date" id="checkout">
+</div>
+<div class="form-group">
+<label>Pilih Kamar</label>
+<select id="kamarSelect">
+<option value="">-- Pilih Kamar --</option>
+<option value="750000">Deluxe Ocean View - Rp 750.000</option>
+<option value="1500000">Vila Family - Rp 1.500.000</option>
+<option value="2800000">Vila Private Pool - Rp 2.800.000</option>
+</select>
+</div>
+<div class="form-group">
+<label>Jumlah Tamu</label>
+<input type="number" id="tamu" value="2" min="1">
+</div>
+</div>
+<div class="total-harga" id="total">Total: Rp 0</div>
+<button class="btn" style="width:100%" onclick="kirimWA()"><i class="fa-brands fa-whatsapp"></i> Booking via WhatsApp</button>
+</div>
+</section>
+
+<section id="galeri" data-aos="fade-up">
+<h2 class="section-title">Galeri Vila</h2>
+<div class="galeri">
+<img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070">
+<img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=2069">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2070">
+<img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=2070">
+</div>
+</section>
+
+<section id="kontak" data-aos="fade-up">
+<h2 class="section-title">Lokasi Kami</h2>
+<div class="card" style="padding:20px;">
+<p><i class="fa-solid fa-location-dot" style="color:var(--emas)"></i> <b>Alamat:</b> Jl. Pantai Sawarna, Desa Sawarna Timur, Bayah, Lebak, Banten</p>
+<p><i class="fa-brands fa-whatsapp" style="color:var(--emas)"></i> <b>WA:</b> 0812-3456-7890</p>
+<div class="map-box" style="margin-top:15px;">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.1!2d106.123!3d-6.123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e4221!2sPantai%20Sawarna!5e0!3m2!1sen!2sid!4v1" allowfullscreen loading="lazy"></iframe>
+</div>
+</div>
+</section>
+
+<div class="cta-home" data-aos="zoom-in">
+<h3>Tertarik Bekerja Sama?</h3>
+<p>Lihat portofolio jasa pembuatan website lainnya</p>
+<br>
+</div>
+
+</div>
+
+<footer>
+Copyright © 2026 Lanzz Project. All Rights Reserved. <br>Developed & Designed by <b>Lanzz Project</b>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+function showToast(msg){const toast=document.getElementById('toast');toast.innerText=msg;toast.classList.add('show');setTimeout(()=>{toast.classList.remove('show')},3000);}
+AOS.init({duration:1200,once:true});
+particlesJS('particles-js',{particles:{number:{value:50},size:{value:2},color:{value:'#D4AF37'},line_linked:{enable:true,color:'#8B4513'},move:{speed:0.8}}});
+window.addEventListener('scroll',()=>{
+document.getElementById('backToTop').style.display=window.scrollY>400?'flex':'none';
+document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)
+});
+document.getElementById('backToTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// LOGIKA BOOKING
+let selectedRoom = 0;
+let roomName = "";
+
+document.querySelectorAll('.room-card').forEach(card=>{
+card.addEventListener('click',()=>{
+document.querySelectorAll('.room-card').forEach(c=>c.classList.remove('active'));
+card.classList.add('active');
+selectedRoom = parseInt(card.getAttribute('data-harga'));
+roomName = card.getAttribute('data-nama');
+document.getElementById('kamarSelect').value = selectedRoom;
+hitungTotal();
+})
+})
+
+document.querySelectorAll('#checkin,#checkout,#kamarSelect').forEach(el=>{
+el.addEventListener('change',hitungTotal)
+})
+
+function hitungTotal(){
+const checkin = new Date(document.getElementById('checkin').value);
+const checkout = new Date(document.getElementById('checkout').value);
+const harga = parseInt(document.getElementById('kamarSelect').value) || selectedRoom;
+if(checkin && checkout && harga){
+const diffTime = checkout - checkin;
+const diffDays = diffTime / (1000 * 60 * 60 * 24);
+if(diffDays > 0){
+const total = harga * diffDays;
+document.getElementById('total').innerText = `Total: Rp ${total.toLocaleString('id-ID')} untuk ${diffDays} malam`;
+}
+}
+}
+
+function kirimWA(){
+const nama = document.getElementById('nama').value;
+const wa = document.getElementById('wa').value;
+const checkin = document.getElementById('checkin').value;
+const checkout = document.getElementById('checkout').value;
+const tamu = document.getElementById('tamu').value;
+const total = document.getElementById('total').innerText;
+
+if(!nama || !wa || !checkin || !checkout || !roomName){
+showToast('Harap isi semua data booking dulu!');
+return;
+}
+
+const pesan = `Halo Vila Sawarna Paradise%0A%0ASaya mau booking:%0A`+
+`Nama: ${nama}%0A`+
+`WA: ${wa}%0A`+
+`Kamar: ${roomName}%0A`+
+`Check-in: ${checkin}%0A`+
+`Check-out: ${checkout}%0A`+
+`Jumlah Tamu: ${tamu}%0A`+
+`${total}%0A%0AMohon konfirmasi. Terima kasih`;
+window.open(`https://wa.me/6281234567890?text=${pesan}`,'_blank');
+showToast('Mengalihkan ke WhatsApp...');
+}
+
+setTimeout(()=>showToast('Ada Promo 20% Bulan Ini!'),2000);
+</script>
+</body>
+</html>
