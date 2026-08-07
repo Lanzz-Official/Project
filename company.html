@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME - Company Profile</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#0F172A;--secondary:#2563EB;--accent:#F59E0B;--bg:#F8FAFC;--card:#FFFFFF;--text:#1E293B;--sub:#64748B;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+.scroll-animate{opacity:0;transform:translateY(50px);transition:1.2s ease-out}
+.scroll-animate.show{opacity:1;transform:translateY(0)}
+
+/* HEADER */
+header{background:var(--card);box-shadow:0 4px 20px rgba(0,0,0,.05);position:fixed;width:100%;top:0;z-index:100}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
+.logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--primary)}
+.logo span{color:var(--secondary)}
+.nav-menu{display:flex;gap:30px;list-style:none}
+.nav-menu a{color:var(--text);text-decoration:none;font-weight:600;transition:.3s}
+.nav-menu a:hover{color:var(--secondary)}
+
+/* HERO */
+.hero{height:100vh;background:linear-gradient(rgba(15,23,42,.85),rgba(15,23,42,.85)),url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1920') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:20px}
+.hero h1{font-family:'Playfair Display',serif;font-size:70px;margin-bottom:20px;animation:fadeUp 1s ease}
+.hero p{font-size:18px;margin-bottom:30px;opacity:.9;animation:fadeUp 1.2s ease}
+.btn-hero{padding:16px 45px;background:var(--secondary);color:#fff;text-decoration:none;border-radius:50px;font-weight:800;transition:.3s;animation:fadeUp 1.4s ease}
+.btn-hero:hover{background:var(--accent);transform:scale(1.05)}
+
+/* SECTION */
+section{padding:100px 20px;max-width:1200px;margin:auto}
+.section-title{text-align:center;font-family:'Playfair Display',serif;font-size:42px;margin-bottom:15px}
+.section-sub{text-align:center;color:var(--sub);margin-bottom:60px}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about-img img{width:100%;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,.15);animation:float 4s ease-in-out infinite}
+.about-text h3{font-size:28px;margin-bottom:20px;color:var(--primary)}
+
+/* LAYAN */
+.layanan{background:#fff}
+.layanan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.layanan-card{background:var(--bg);padding:40px 30px;border-radius:20px;text-align:center;transition:.4s;border-bottom:4px solid transparent}
+.layanan-card:hover{transform:translateY(-10px);border-color:var(--secondary);box-shadow:0 15px 35px rgba(37,99,235,.15)}
+.layanan-card i{font-size:40px;color:var(--secondary);margin-bottom:20px}
+
+/* PORTOFOLIO */
+.porto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.porto-item{position:relative;border-radius:18px;overflow:hidden;cursor:pointer}
+.porto-item img{width:100%;height:250px;object-fit:cover;transition:.5s}
+.porto-item:hover img{transform:scale(1.1)}
+.porto-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;padding:20px;transform:translateY(100%);transition:.4s}
+.porto-item:hover .porto-overlay{transform:translateY(0)}
+
+/* TIM */
+.tim{background:#fff}
+.tim-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.tim-card{text-align:center}
+.tim-card img{width:180px;height:180px;border-radius:50%;object-fit:cover;margin-bottom:15px;border:5px solid var(--bg)}
+
+/* TESTIMONI */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.testi-card{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,.06)}
+.testi-card i{color:var(--accent);font-size:24px;margin-bottom:15px}
+
+/* KONTAK */
+.kontak-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.kontak-info i{color:var(--secondary);margin-right:10px}
+.kontak-form input,.kontak-form textarea{width:100%;padding:14px;border:2px solid #E2E8F0;border-radius:10px;margin-bottom:15px;outline:none}
+.btn-kirim{padding:14px 40px;background:var(--secondary);color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;text-align:center;padding:80px 20px}
+.btn-back{display:inline-block;padding:16px 45px;background:var(--accent);color:#000;text-decoration:none;border-radius:50px;font-weight:800;font-size:16px;transition:.3s}
+.btn-back:hover{transform:scale(1.05)}
+
+/* FOOTER */
+footer{background:var(--primary);color:#fff;text-align:center;padding:40px 20px}
+
+@media (max-width:900px){
+.about-wrap,.kontak-wrap{grid-template-columns:1fr}
+.layanan-grid,.porto-grid,.tim-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+.hero h1{font-size:45px}
+.nav-menu{display:none}
+}
+@media (max-width:500px){
+.layanan-grid,.porto-grid,.tim-grid,.testi-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<nav>
+<div class="logo">YOUR <span>NAME</span></div>
+<ul class="nav-menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">Tentang</a></li>
+<li><a href="#layanan">Layanan</a></li>
+<li><a href="#porto">Portofolio</a></li>
+<li><a href="#kontak">Kontak</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div>
+<h1 class="scroll-animate">YOUR NAME</h1>
+<p class="scroll-animate">Solusi Digital Kreatif Untuk Bisnis Anda. Profesional, Terpercaya, Inovatif</p>
+<a href="#about" class="btn-hero scroll-animate">Mulai Sekarang</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2 class="section-title scroll-animate">Tentang Kami</h2>
+<p class="section-sub scroll-animate">Menghadirkan solusi terbaik sejak 2020</p>
+<div class="about-wrap">
+<div class="about-img scroll-animate">
+<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=600" alt="About">
+</div>
+<div class="about-text scroll-animate">
+<h3>Kami Adalah Agensi Kreatif</h3>
+<p>YOUR NAME adalah perusahaan yang bergerak di bidang pengembangan website, aplikasi, dan branding. Dengan tim profesional dan berpengalaman, kami siap membantu bisnis Anda tumbuh di era digital.</p>
+<p style="margin-top:15px">Visi kami: Menjadi partner digital terpercaya yang memberikan hasil maksimal untuk setiap klien.</p>
+</div>
+</div>
+</section>
+
+<!-- LAYAN -->
+<section class="layanan" id="layanan">
+<h2 class="section-title scroll-animate">Layanan Kami</h2>
+<p class="section-sub scroll-animate">Apa yang bisa kami lakukan untuk Anda</p>
+<div class="layanan-grid">
+<div class="layanan-card scroll-animate">
+<i class="fa-solid fa-laptop-code"></i>
+<h3>Web Development</h3>
+<p>Pembuatan website company profile, e-commerce, landing page dengan desain modern dan responsive</p>
+</div>
+<div class="layanan-card scroll-animate">
+<i class="fa-solid fa-mobile-screen"></i>
+<h3>Mobile App</h3>
+<p>Pembuatan aplikasi Android & iOS untuk bisnis, UMKM, dan startup dengan performa terbaik</p>
+</div>
+<div class="layanan-card scroll-animate">
+<i class="fa-solid fa-bullhorn"></i>
+<h3>Digital Marketing</h3>
+<p>Strategi marketing digital, SEO, Ads, dan Social Media Management untuk meningkatkan brand Anda</p>
+</div>
+</div>
+</section>
+
+<!-- PORTOFOLIO -->
+<section id="porto">
+<h2 class="section-title scroll-animate">Portofolio</h2>
+<p class="section-sub scroll-animate">Beberapa project terbaik kami</p>
+<div class="porto-grid">
+<div class="porto-item scroll-animate">
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400" alt="Project 1">
+<div class="porto-overlay"><h3>E-Commerce Fashion</h3><p>Website Toko Online</p></div>
+</div>
+<div class="porto-item scroll-animate">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400" alt="Project 2">
+<div class="porto-overlay"><h3>Aplikasi Keuangan</h3><p>Mobile App Android</p></div>
+</div>
+<div class="porto-item scroll-animate">
+<img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=400" alt="Project 3">
+<div class="porto-overlay"><h3>Company Profile</h3><p>Website Perusahaan</p></div>
+</div>
+</div>
+</section>
+
+<!-- TIM -->
+<section class="tim">
+<h2 class="section-title scroll-animate">Tim Kami</h2>
+<p class="section-sub scroll-animate">Orang-orang hebat di balik layar</p>
+<div class="tim-grid">
+<div class="tim-card scroll-animate">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="CEO">
+<h3>John Doe</h3>
+<p style="color:var(--sub)">CEO & Founder</p>
+</div>
+<div class="tim-card scroll-animate">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200" alt="CTO">
+<h3>Jane Smith</h3>
+<p style="color:var(--sub)">Lead Developer</p>
+</div>
+<div class="tim-card scroll-animate">
+<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200" alt="Designer">
+<h3>Mike Johnson</h3>
+<p style="color:var(--sub)">UI/UX Designer</p>
+</div>
+<div class="tim-card scroll-animate">
+<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200" alt="Marketing">
+<h3>Sarah Lee</h3>
+<p style="color:var(--sub)">Marketing Manager</p>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONI -->
+<section>
+<h2 class="section-title scroll-animate">Testimoni Klien</h2>
+<div class="testi-grid">
+<div class="testi-card scroll-animate">
+<i class="fa-solid fa-quote-left"></i>
+<p>"Pelayanan sangat profesional. Website jadi cepat dan hasilnya memuaskan. Recommended!"</p>
+<h4 style="margin-top:15px">- PT Maju Jaya</h4>
+</div>
+<div class="testi-card scroll-animate">
+<i class="fa-solid fa-quote-left"></i>
+<p>"Timnya komunikatif dan hasilnya sesuai brief. Bisnis online kami naik 200% setelah pakai jasa ini"</p>
+<h4 style="margin-top:15px">- CV Sukses Mandiri</h4>
+</div>
+<div class="testi-card scroll-animate">
+<i class="fa-solid fa-quote-left"></i>
+<p>"Harga terjangkau tapi kualitas premium. Pasti akan order lagi untuk project selanjutnya"</p>
+<h4 style="margin-top:15px">- Toko Berkah</h4>
+</div>
+</div>
+</section>
+
+<!-- KONTAK -->
+<section class="kontak" id="kontak">
+<h2 class="section-title scroll-animate">Hubungi Kami</h2>
+<div class="kontak-wrap">
+<div class="kontak-info scroll-animate">
+<h3>Informasi Kontak</h3>
+<p style="margin:20px 0"><i class="fa-solid fa-location-dot"></i> Jl. Sudirman No. 123, Jakarta</p>
+<p style="margin:20px 0"><i class="fa-solid fa-phone"></i> +62 812 3456 7890</p>
+<p style="margin:20px 0"><i class="fa-solid fa-envelope"></i> hello@yourname.com</p>
+</div>
+<form class="kontak-form scroll-animate">
+<input type="text" placeholder="Nama Anda" required>
+<input type="email" placeholder="Email Anda" required>
+<textarea rows="5" placeholder="Pesan Anda" required></textarea>
+<button type="submit" class="btn-kirim">Kirim Pesan</button>
+</form>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2 style="font-size:36px;margin-bottom:15px">Siap Bekerja Sama Dengan Kami?</h2>
+<p style="margin-bottom:30px">Mari wujudkan project digital impian Anda bersama YOUR NAME</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Lanzz Project. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ANIMASI SCROLL
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show')}})
+},{threshold:0.15});
+document.querySelectorAll('.scroll-animate').forEach(el=>observer.observe(el));
+
+// FORM
+document.querySelector('.kontak-form').addEventListener('submit',function(e){
+e.preventDefault();
+alert('Terima kasih! Pesan Anda sudah kami terima ❤️');
+this.reset();
+})
+</script>
+
+</body>
+</html>
