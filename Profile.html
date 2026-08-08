@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R - LANZZ | Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;500;700&display=swap');
+:root{--bg:#05060f;--glass:rgba(15,18,35,0.55);--text:#e8ecff;--neon:#00f0ff;--neon2:#d946ef}
+.light{--bg:#f0f4ff;--glass:rgba(255,255,255,0.7);--text:#0a0a0a;--neon:#2563eb;--neon2:#7c3aed}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden;padding-bottom:120px}
+.bg{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 50% 50%,rgba(0,240,255,.15),transparent 70%)}
+#matrix{position:fixed;inset:0;z-index:-1;opacity:.15}
+nav{position:fixed;top:15px;left:50%;transform:translateX(-50%);background:var(--glass);backdrop-filter:blur(25px);padding:10px 15px;border-radius:50px;border:1px solid rgba(0,240,255,.25);z-index:999;display:flex;gap:12px;overflow-x:auto;max-width:95%}
+nav::-webkit-scrollbar{display:none}nav a{color:var(--text);text-decoration:none;font-weight:500;font-size:.9rem;white-space:nowrap}nav a.active{color:var(--neon)}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}
+.profile-card{background:var(--glass);backdrop-filter:blur(25px);padding:40px 25px;border-radius:30px;border:1px solid rgba(0,240,255,.3);box-shadow:0 0 60px rgba(0,240,255,.25);width:100%;max-width:400px}
+#profilePic{width:130px;height:130px;border-radius:50%;border:3px solid var(--neon);margin-bottom:20px;box-shadow:0 0 35px var(--neon);object-fit:cover}
+.profile-card h1{font-family:'Orbitron',sans-serif;font-size:2.5rem;color:var(--neon)}
+.fab{position:fixed;bottom:20px;left:20px;width:50px;height:50px;border-radius:50%;background:var(--neon);color:var(--bg);border:none;font-size:1.2rem;box-shadow:0 0 20px var(--neon)}
+#musicBtn{bottom:80px}
+#toast{position:fixed;top:80px;right:10px;left:10px;background:var(--glass);padding:12px;border-radius:10px;border:1px solid var(--neon);display:none;text-align:center}
+.btn{padding:12px 25px;border:2px solid var(--neon);border-radius:50px;background:transparent;color:var(--neon)}
+.btn:hover{background:var(--neon);color:var(--bg)}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas><div class="bg"></div><audio id="bgm" loop><source src="https://cdn.pixabay.com/audio/2025/08/23/audio_7ac1d0f2b2.mp3"></audio>
+<nav><a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="portfolio.html">Portfolio</a><a href="galeri.html">Galeri</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><button id="themeBtn" class="btn" style="padding:5px 12px;font-size:.8rem">🌙</button></nav>
+<section class="hero"><div class="profile-card"><video id="profilePic" autoplay muted loop playsinline><source src="profile.mp4"></video><h1 id="name">R - LANZZ</h1><p id="typed"></p><div style="display:flex;justify-content:center;gap:15px;margin-top:15px"><a href="https://wa.me/6283894480846" style="color:var(--neon);font-size:1.5rem"><i class="fab fa-whatsapp"></i></a><a href="https://www.instagram.com/lanzz.offcl" style="color:var(--neon);font-size:1.5rem"><i class="fab fa-instagram"></i></a></div><button onclick="downloadCV()" class="btn" style="margin-top:20px"><i class="fa fa-download"></i> Download CV</button></div></section>
+<button id="panelBtn" class="fab"><i class="fa fa-gear"></i></button><button id="musicBtn" class="fab"><i class="fa fa-music"></i></button><div id="toast">Ada yang liat profil lu 👀</div>
+<div id="panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--glass);backdrop-filter:blur(30px);padding:25px;border-radius:20px;border:1px solid var(--neon);z-index:9999;width:90%"><h3 style="color:var(--neon)">PANEL ADMIN</h3><input id="inNama" placeholder="Nama"><input id="inBio" placeholder="Bio"><input type="color" id="inWarna" value="#00f0ff"><input type="file" id="inPP" accept="image/*,video/*"><button onclick="savePanel()" class="btn" style="margin-top:15px;width:100%">SIMPAN</button><button onclick="closePanel()" class="btn" style="background:red;border-color:red;color:white;width:100%;margin-top:10px">TUTUP</button></div>
+<script>
+const c=document.getElementById('matrix'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;let str="01R-LANZZDEV".split(""),fs=14,cols=c.width/fs,drop=[];for(let i=0;i<cols;i++)drop[i]=1;function draw(){x.fillStyle="rgba(5,6,15,0.05)";x.fillRect(0,0,c.width,c.height);x.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--neon');x.font=fs+"px monospace";for(let i=0;i<drop.length;i++){x.fillText(str[Math.floor(Math.random()*str.length)],i*fs,drop[i]*fs);if(drop[i]*fs>c.height&&Math.random()>.975)drop[i]=0;drop[i]++}}setInterval(draw,35)
+let m=false;musicBtn.onclick=()=>{m?bgm.pause():bgm.play();m=!m}
+if(!localStorage.getItem('visit')){localStorage.setItem('visit',1)}else{localStorage.setItem('visit',+localStorage.getItem('visit')+1);toast.style.display='block';setTimeout(()=>toast.style.display='none',3000)}
+panelBtn.onclick=()=>panel.style.display='block';function closePanel(){panel.style.display='none'}
+function savePanel(){localStorage.setItem('name',inNama.value);localStorage.setItem('bio',inBio.value);document.documentElement.style.setProperty('--neon',inWarna.value);let file=inPP.files[0];if(file){profilePic.src=URL.createObjectURL(file)}name.innerText=inNama.value;alert('Tersimpan!');closePanel()}
+function downloadCV(){let data=`NAMA: ${localStorage.getItem('name')||'R - LANZZ'}\nBIO: ${localStorage.getItem('bio')||'Developer'}\nWA: 083894480846`;let blob=new Blob([data],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='CV_RLANZZ.txt';a.click()}
+themeBtn.onclick=()=>{document.body.classList.toggle('light')}
+const texts=["Developer","Modder","Creator","Editor","Gamer"];let i=0,j=0,d=false;setInterval(()=>{let t=texts[i];typed.innerText=t.substring(0,j)+(j<t.length?'|':'');d?j--:j++;if(j==t.length)d=true;if(j==0){d=false;i=(i+1)%texts.length}},140)
+</script></body></html>
